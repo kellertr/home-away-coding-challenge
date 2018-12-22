@@ -1,11 +1,75 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches/build_file_checksums.ser
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
+# Maven
+target/
+
+# Gradle
+.gradle/
+gradle/wrapper/gradle-wrapper.jar
+build/
+gradlew.bat
 .DS_Store
-/build
+local.properties
 /captures
-.externalNativeBuild
+
+# Built application files
+*.apk
+*.ap_
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+
+#Crashlytics
+crashlytics-build.properties
+com_crashlytics_export_strings.xml
+#Ignore crashlytics.properties in the root as we dynamically copy it as necessary
+/lowes-android-app/crashlytics.properties
+
+# Log Files
+*.log
+
+# Derby
+derby.log
+
+# CodePro
+.codepro
+
+# ---- Mac OS X
+.DS_Store?
+Icon?
+# Thumbnails
+._*
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# ---- Windows
+# Windows image file caches
+Thumbs.db
+# Folder config file
+Desktop.ini
+
+# Eclipse
+.apt_generated/
+.settings/
+.project
+.classpath
+
+# JRebel
+rebel.xml
+
+# Intellij
+.idea/
+*.iml
+*.iws
+atlassian-ide-plugin.xml
+gen-external-apklibs/
+
+#Proguard
+proguard_logs/
