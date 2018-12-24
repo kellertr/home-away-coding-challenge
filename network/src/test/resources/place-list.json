@@ -1,0 +1,886 @@
+{
+  "meta": {
+    "code": 200,
+    "requestId": "5c1ea170f594df03eab36418"
+  },
+  "response": {
+    "venues": [{
+      "id": "49d3e558f964a520225c1fe3",
+      "name": "Cherry Street Coffee House",
+      "location": {
+        "address": "103 Cherry St",
+        "crossStreet": "at 1st Ave",
+        "lat": 47.6027673689831,
+        "lng": -122.33415096584942,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.6027673689831,
+          "lng": -122.33415096584942
+        }],
+        "distance": 413,
+        "postalCode": "98104",
+        "cc": "US",
+        "neighborhood": "Seattle Central Business District",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["103 Cherry St (at 1st Ave)", "Seattle, WA 98104", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "52d456c811d24128cdd7bc8b",
+      "name": "Storyville Coffee Company",
+      "location": {
+        "address": "1001 1st Ave",
+        "crossStreet": "at Madison St",
+        "lat": 47.60475923205166,
+        "lng": -122.33636210125788,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60475923205166,
+          "lng": -122.33636210125788
+        }],
+        "distance": 360,
+        "postalCode": "98104",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1001 1st Ave (at Madison St)", "Seattle, WA 98104", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "55fc6351498e081c6ae9a9c1",
+      "name": "Slate Coffee",
+      "location": {
+        "address": "602 2nd Ave",
+        "crossStreet": "James St",
+        "lat": 47.60226958101576,
+        "lng": -122.33254930945151,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60226958101576,
+          "lng": -122.33254930945151
+        }],
+        "distance": 440,
+        "postalCode": "98104",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["602 2nd Ave (James St)", "Seattle, WA 98104", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4a609aa8f964a520ebc01fe3",
+      "name": "Pegasus Coffee",
+      "location": {
+        "address": "711 3rd Ave",
+        "crossStreet": "at Cherry St",
+        "lat": 47.603689,
+        "lng": -122.332502,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.603689,
+          "lng": -122.332502
+        }],
+        "distance": 282,
+        "postalCode": "98104",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["711 3rd Ave (at Cherry St)", "Seattle, WA 98104", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4b5daa3ff964a520cc6529e3",
+      "name": "Pegasus Coffee",
+      "location": {
+        "address": "1218 3rd Ave",
+        "crossStreet": "at Seneca St",
+        "lat": 47.60755521415362,
+        "lng": -122.33584527606352,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60755521415362,
+          "lng": -122.33584527606352
+        }],
+        "distance": 320,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1218 3rd Ave (at Seneca St)", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4a848900f964a520e3fc1fe3",
+      "name": "Cherry Street Coffee House",
+      "location": {
+        "address": "808 3rd Ave",
+        "crossStreet": "btw Marion & Columbia",
+        "lat": 47.60451120781553,
+        "lng": -122.3330104220454,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60451120781553,
+          "lng": -122.3330104220454
+        }],
+        "distance": 201,
+        "postalCode": "98104",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["808 3rd Ave (btw Marion & Columbia)", "Seattle, WA 98104", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4b05a7b3f964a52054e022e3",
+      "name": "Tully's Coffee - Two Union",
+      "location": {
+        "address": "601 Union",
+        "lat": 47.610529120093965,
+        "lng": -122.33196358381109,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.610529120093965,
+          "lng": -122.33196358381109
+        }],
+        "distance": 480,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["601 Union", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "56fecbc2498e190dff650557",
+      "name": "Peet's Coffee & Tea",
+      "location": {
+        "lat": 47.610033,
+        "lng": -122.335019,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.610033,
+          "lng": -122.335019
+        }],
+        "distance": 479,
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["Seattle, WA", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "50523792e4b0c32d8cc1a4aa",
+      "name": "Voxx Coffee",
+      "location": {
+        "address": "1200 6th Ave",
+        "crossStreet": "University",
+        "lat": 47.60891863374855,
+        "lng": -122.33250384355084,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60891863374855,
+          "lng": -122.33250384355084
+        }],
+        "distance": 303,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1200 6th Ave (University)", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d16d941735",
+        "name": "Café",
+        "pluralName": "Cafés",
+        "shortName": "Café",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4fa7fc2ae4b039aeed33d99e",
+      "name": "Coffee Tree",
+      "location": {
+        "address": "905 8th Ave",
+        "crossStreet": "at Marion St.",
+        "lat": 47.60738843604867,
+        "lng": -122.32800294217752,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60738843604867,
+          "lng": -122.32800294217752
+        }],
+        "distance": 332,
+        "postalCode": "98104",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["905 8th Ave (at Marion St.)", "Seattle, WA 98104", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "venuePage": {
+        "id": "48895038"
+      },
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "56a65860498e2d6b38429706",
+      "name": "Honor Coffee & Tea",
+      "location": {
+        "address": "200 University St",
+        "crossStreet": "3rd Avenue",
+        "lat": 47.608402902147105,
+        "lng": -122.33641217943594,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.608402902147105,
+          "lng": -122.33641217943594
+        }],
+        "distance": 407,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["200 University St (3rd Avenue)", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "50c8ebb5e4b01048fe690149",
+      "name": "Liberty Mutual Coffee Bar",
+      "location": {
+        "address": "1001 4th Ave Fl 8",
+        "lat": 47.6063791684128,
+        "lng": -122.33362487897436,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.6063791684128,
+          "lng": -122.33362487897436
+        }],
+        "distance": 118,
+        "postalCode": "98154",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1001 4th Ave Fl 8", "Seattle, WA 98154", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d16d941735",
+        "name": "Café",
+        "pluralName": "Cafés",
+        "shortName": "Café",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/cafe_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4f32400019836c91c7c5019f",
+      "name": "Seattles Best Coffee - Retail Cafes, Downtown Seattle, Pacific Plaza",
+      "location": {
+        "address": "1100 4th Ave",
+        "lat": 47.60677,
+        "lng": -122.33355,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60677,
+          "lng": -122.33355
+        }],
+        "distance": 127,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1100 4th Ave", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "5bb7a140acb37f002cdc38ea",
+      "name": "Dollop Coffee Co.",
+      "location": {
+        "address": "600 1st Ave",
+        "lat": 47.602146,
+        "lng": -122.33368,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.602146,
+          "lng": -122.33368
+        }],
+        "distance": 468,
+        "postalCode": "98104",
+        "cc": "US",
+        "neighborhood": "Pioneer Square",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["600 1st Ave", "Seattle, WA 98104", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4c001f82c30a2d7f980d121d",
+      "name": "The Good Coffee Company",
+      "location": {
+        "address": "818 Post Ave",
+        "lat": 47.603572,
+        "lng": -122.335899,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.603572,
+          "lng": -122.335899
+        }],
+        "distance": 410,
+        "postalCode": "98104",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["818 Post Ave", "Seattle, WA 98104", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1ff941735",
+        "name": "Miscellaneous Shop",
+        "pluralName": "Miscellaneous Shops",
+        "shortName": "Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/shops\/default_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4c3c7b7d933b0f470b16e421",
+      "name": "Ellen's Coffee",
+      "location": {
+        "address": "1201 3rd Ave, Atrium",
+        "lat": 47.60713486084488,
+        "lng": -122.33651593426251,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60713486084488,
+          "lng": -122.33651593426251
+        }],
+        "distance": 349,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1201 3rd Ave, Atrium", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "575f23d7498eeda7b381315d",
+      "name": "Slate Coffee Roasters",
+      "location": {
+        "address": "1117 1st Ave",
+        "crossStreet": "Seneca",
+        "lat": 47.6058586692996,
+        "lng": -122.33735621844093,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.6058586692996,
+          "lng": -122.33735621844093
+        }],
+        "distance": 398,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1117 1st Ave (Seneca)", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4f32455b19836c91c7c7255a",
+      "name": "Boyds Coffee Stores",
+      "location": {
+        "address": "1303 6th Ave",
+        "lat": 47.610147,
+        "lng": -122.333558,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.610147,
+          "lng": -122.333558
+        }],
+        "distance": 452,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1303 6th Ave", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4d4b7105d754a06374d81259",
+        "name": "Food",
+        "pluralName": "Food",
+        "shortName": "Food",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/default_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4aef0ac0f964a5204bd521e3",
+      "name": "Starbucks",
+      "location": {
+        "address": "1125 4th Ave",
+        "crossStreet": "Seneca",
+        "lat": 47.60734,
+        "lng": -122.33425,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60734,
+          "lng": -122.33425
+        }],
+        "distance": 206,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1125 4th Ave (Seneca)", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "41f98080f964a5203b1f1fe3",
+      "name": "Benaroya Hall",
+      "location": {
+        "address": "200 University St",
+        "crossStreet": "btwn 2nd & 3rd Ave",
+        "lat": 47.60804096866886,
+        "lng": -122.33662257901865,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60804096866886,
+          "lng": -122.33662257901865
+        }],
+        "distance": 397,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["200 University St (btwn 2nd & 3rd Ave)", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "5032792091d4c4b30a586d5c",
+        "name": "Concert Hall",
+        "pluralName": "Concert Halls",
+        "shortName": "Concert Hall",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/arts_entertainment\/musicvenue_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4a85b6f3f964a52007ff1fe3",
+      "name": "Starbucks",
+      "location": {
+        "address": "601 Union St",
+        "lat": 47.610153,
+        "lng": -122.33308,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.610153,
+          "lng": -122.33308
+        }],
+        "distance": 445,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["601 Union St", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4b82c0a8f964a5208ae230e3",
+      "name": "Starbucks",
+      "location": {
+        "address": "700 5th Ave.",
+        "crossStreet": "40th Floor",
+        "lat": 47.60468,
+        "lng": -122.33044,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60468,
+          "lng": -122.33044
+        }],
+        "distance": 209,
+        "postalCode": "98104",
+        "cc": "US",
+        "neighborhood": "Seattle Central Business District",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["700 5th Ave. (40th Floor)", "Seattle, WA 98104", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4ad3bf5af964a52015e620e3",
+      "name": "Starbucks",
+      "location": {
+        "address": "1301 2nd Ave",
+        "crossStreet": "in Benaroya Hall",
+        "lat": 47.60800163709226,
+        "lng": -122.33770936091102,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60800163709226,
+          "lng": -122.33770936091102
+        }],
+        "distance": 467,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1301 2nd Ave (in Benaroya Hall)", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4ad506e0f964a520600121e3",
+      "name": "Starbucks",
+      "location": {
+        "address": "1301 2nd Ave Ste 200",
+        "crossStreet": "at Union St",
+        "lat": 47.60804227825846,
+        "lng": -122.33773708171789,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60804227825846,
+          "lng": -122.33773708171789
+        }],
+        "distance": 471,
+        "postalCode": "98101",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1301 2nd Ave Ste 200 (at Union St)", "Seattle, WA 98101", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4a02aaa5f964a52061711fe3",
+      "name": "City Hall Park",
+      "location": {
+        "address": "450 3rd Ave.",
+        "lat": 47.60198920394335,
+        "lng": -122.3306777486063,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60198920394335,
+          "lng": -122.3306777486063
+        }],
+        "distance": 481,
+        "postalCode": "98104",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["450 3rd Ave.", "Seattle, WA 98104", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d163941735",
+        "name": "Park",
+        "pluralName": "Parks",
+        "shortName": "Park",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/parks_outdoors\/park_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }, {
+      "id": "4c44879cf799e21ecaf0ada2",
+      "name": "Tully's",
+      "location": {
+        "address": "1000 2nd Ave",
+        "lat": 47.60437233534792,
+        "lng": -122.33574740388227,
+        "labeledLatLngs": [{
+          "label": "display",
+          "lat": 47.60437233534792,
+          "lng": -122.33574740388227
+        }],
+        "distance": 343,
+        "postalCode": "98104",
+        "cc": "US",
+        "city": "Seattle",
+        "state": "WA",
+        "country": "United States",
+        "formattedAddress": ["1000 2nd Ave", "Seattle, WA 98104", "United States"]
+      },
+      "categories": [{
+        "id": "4bf58dd8d48988d1e0931735",
+        "name": "Coffee Shop",
+        "pluralName": "Coffee Shops",
+        "shortName": "Coffee Shop",
+        "icon": {
+          "prefix": "https:\/\/ss3.4sqi.net\/img\/categories_v2\/food\/coffeeshop_",
+          "suffix": ".png"
+        },
+        "primary": true
+      }],
+      "referralId": "v-1545511280",
+      "hasPerk": false
+    }]
+  }
+}

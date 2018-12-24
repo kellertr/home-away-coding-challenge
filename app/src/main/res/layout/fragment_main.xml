@@ -7,13 +7,26 @@
     tools:context=".MainActivityFragment"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <Button
+        android:id="@+id/testListCall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Venue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/testDetailCall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Venue Detail"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toBottomOf="@id/testListCall"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>
