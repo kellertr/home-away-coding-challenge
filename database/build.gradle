@@ -1,0 +1,51 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+  compileSdkVersion 28
+
+  defaultConfig {
+    minSdkVersion 21
+    targetSdkVersion 28
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+}
+
+dependencies {
+  implementation project(':model')
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+  api group: 'androidx.room', name: 'room-runtime', version: room_version
+  kapt group: 'androidx.room', name: 'room-compiler', version: room_version
+
+  api group: 'com.google.dagger', name: 'dagger', version: daggerVersion
+  kapt group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion
+  implementation group: 'androidx.room', name: 'room-rxjava2', version: room_version
+  implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+
+  testImplementation "androidx.room:room-testing:$room_version"
+  testImplementation 'junit:junit:4.12'
+
+  testImplementation "androidx.test:core:1.1.0"
+  testImplementation "androidx.test:runner:1.1.1"
+  testImplementation "androidx.test:rules:1.1.1"
+  testImplementation "androidx.test.ext:junit:1.1.0"
+  testImplementation "org.robolectric:robolectric:4.1"
+
+}
+repositories {
+  mavenCentral()
+}

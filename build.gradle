@@ -1,4 +1,5 @@
 buildscript {
+  ext.kotlin_version = '1.2.71'
 
   ext {
     kotlin_version = '1.2.71'
@@ -6,6 +7,8 @@ buildscript {
     okhttp_version = '3.12.0'
     daggerVersion = '2.19'
     mockitoKotlinVersion = '2.0.0'
+    room_version = "2.1.0-alpha03"
+    lifecycle_version="2.0.0"
   }
 
   repositories {
