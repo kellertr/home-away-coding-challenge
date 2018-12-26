@@ -25,7 +25,6 @@ android {
 }
 
 dependencies {
-  implementation project(':model')
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
   api group: 'androidx.room', name: 'room-runtime', version: room_version
@@ -38,6 +37,7 @@ dependencies {
 
   testImplementation "androidx.room:room-testing:$room_version"
   testImplementation 'junit:junit:4.12'
+  testImplementation group: 'com.nhaarman.mockitokotlin2', name: 'mockito-kotlin', version: mockitoKotlinVersion
 
   testImplementation "androidx.test:core:1.1.0"
   testImplementation "androidx.test:runner:1.1.1"
