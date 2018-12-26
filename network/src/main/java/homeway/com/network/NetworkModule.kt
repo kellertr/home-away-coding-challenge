@@ -10,4 +10,7 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideFourSquareAPI(): FourSquareAPI = FourSquareAPI.create()
+
+    @Provides
+    fun provideFourSquareManager( fourSquareManager: FourSquareManager ): FourSquareManager = fourSquareManager
 }

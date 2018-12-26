@@ -5,10 +5,12 @@ buildscript {
     kotlin_version = '1.2.71'
     retrofit_version = '2.5.0'
     okhttp_version = '3.12.0'
-    daggerVersion = '2.19'
+    daggerVersion = '2.16'
     mockitoKotlinVersion = '2.0.0'
     room_version = "2.1.0-alpha03"
     lifecycle_version="2.0.0"
+    rxAndroidVersion = '2.0.2'
+    rxjavaVersion = '2.2.4'
   }
 
   repositories {

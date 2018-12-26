@@ -15,4 +15,7 @@ class DatabaseModule {
         return Room.databaseBuilder(context, VenueDatabase::class.java, "favorites").build()
     }
 
+    @Provides
+    fun provideVenueDatabaseManager( venueDatabaseManager: VenueDatabaseManager ): VenueDatabaseManager = venueDatabaseManager
+
 }

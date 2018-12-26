@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+  compileSdkVersion 28
+
+  defaultConfig {
+    minSdkVersion 21
+    targetSdkVersion 28
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+}
+
+dependencies {
+  implementation project(':network')
+  implementation project(':database')
+
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+  // LifeCycle
+  kapt group: 'android.arch.lifecycle', name: 'compiler', version: lifecycle_version
+
+  implementation group: 'androidx.lifecycle', name: 'lifecycle-runtime', version: lifecycle_version
+  implementation group: 'androidx.lifecycle', name: 'lifecycle-extensions', version: lifecycle_version
+  implementation group: 'androidx.lifecycle', name: 'lifecycle-common-java8', version: lifecycle_version
+
+  implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: rxjavaVersion
+  implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: rxAndroidVersion
+
+  testImplementation 'junit:junit:4.12'
+  testImplementation group: 'android.arch.core', name: 'core-testing', version: lifecycle_version
+}
