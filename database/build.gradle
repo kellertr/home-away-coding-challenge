@@ -32,13 +32,14 @@ dependencies {
 
   api group: 'com.google.dagger', name: 'dagger', version: daggerVersion
   kapt group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion
+
   implementation group: 'androidx.room', name: 'room-rxjava2', version: room_version
   implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
 
   testImplementation "androidx.room:room-testing:$room_version"
   testImplementation 'junit:junit:4.12'
   testImplementation group: 'com.nhaarman.mockitokotlin2', name: 'mockito-kotlin', version: mockitoKotlinVersion
-
+  testImplementation group: 'android.arch.core', name: 'core-testing', version: lifecycle_version
   testImplementation "androidx.test:core:1.1.0"
   testImplementation "androidx.test:runner:1.1.1"
   testImplementation "androidx.test:rules:1.1.1"

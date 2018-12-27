@@ -16,6 +16,9 @@ class DatabaseModule {
     }
 
     @Provides
-    fun provideVenueDatabaseManager( venueDatabaseManager: VenueDatabaseManager ): VenueDatabaseManager = venueDatabaseManager
+    @Singleton
+    fun provideVenueDao(venueDatabase: VenueDatabase): VenueDao {
+        return venueDatabase.venueDao()
+    }
 
 }

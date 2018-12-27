@@ -1,9 +1,11 @@
 package homeway.com.database
 
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*
 import io.reactivex.Single
 import org.junit.Assert
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 
 /**
@@ -15,6 +17,7 @@ class VenueDatabaseManagerTest {
 
     lateinit var venueDatabaseManager: VenueDatabaseManager
     private val venueDao: VenueDao = mock()
+    @get:Rule var instantTaskExecutorRule = InstantTaskExecutorRule()
 
     @Before
     fun setup(){

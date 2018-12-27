@@ -40,6 +40,9 @@ dependencies {
   implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: rxjavaVersion
   implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: rxAndroidVersion
 
+  api group: 'com.google.dagger', name: 'dagger', version: daggerVersion
+  kapt group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion
+
   testImplementation 'junit:junit:4.12'
   testImplementation group: 'android.arch.core', name: 'core-testing', version: lifecycle_version
 }
