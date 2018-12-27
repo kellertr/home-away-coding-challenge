@@ -3,12 +3,18 @@ package homeway.com.challenge
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import homeway.com.challenge.view.VenueAdapter
+import homeway.com.challenge.view.VenueViewHolder
+import homeway.com.model.venue.Venue
 import homeway.com.viewmodel.VenueListViewModel
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
@@ -26,6 +32,8 @@ class VenueSearchFragment : Fragment() {
 
     lateinit var venueListViewModel: VenueListViewModel
 
+    lateinit var venueListAdapter: VenueAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,8 +43,17 @@ class VenueSearchFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?)
-            = inflater.inflate(R.layout.fragment_main, container, false)
+                              savedInstanceState: Bundle?) = inflater.inflate(R.layout.fragment_main, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        venueListAdapter = VenueAdapter(view = venueList)
+        venueList.layoutManager = LinearLayoutManager(context)
+        venueList.adapter = venueListAdapter
+
+        venueSearch.requestFocus()
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -46,8 +63,10 @@ class VenueSearchFragment : Fragment() {
         }
     }
 
-    val updateVenueList = Observer<List<String>> { venues ->
-        Log.v("", "Venues received $venues")
+    private val updateVenueList = Observer<List<Venue>> { venues ->
+        Log.v(TAG, "Venues received")
+        venueListAdapter.data = venues
+        venueListAdapter.notifyDataSetChanged()
     }
 
     override fun onResume() {

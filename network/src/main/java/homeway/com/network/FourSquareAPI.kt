@@ -8,6 +8,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import okhttp3.OkHttpClient
+import java.security.cert.X509Certificate
+import javax.net.ssl.*
+import javax.security.cert.CertificateException
+
 
 /**
  * The FourSquareAPI is a retrofit interface that will be utilized to do a simple venue search and
@@ -61,9 +66,36 @@ interface FourSquareAPI {
          * @return a new instance of the retrofit API
          */
         fun create(): FourSquareAPI {
+
+            //Trust all certificates, typically we would only want a limited subset of certificates
+            //to prevent man in the middle attacks TODO if time permits
+            val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
+                override fun getAcceptedIssuers(): Array<X509Certificate> {
+                    return arrayOf()
+                }
+
+                @Throws(CertificateException::class)
+                override fun checkClientTrusted(chain: Array<java.security.cert.X509Certificate>, authType: String) {
+                    //No-op
+                }
+
+                @Throws(CertificateException::class)
+                override fun checkServerTrusted(chain: Array<java.security.cert.X509Certificate>, authType: String) {
+                    //No-op
+                }
+            })
+            val sslContext = SSLContext.getInstance("SSL")
+            sslContext.init(null, trustAllCerts, java.security.SecureRandom())
+            val okHttpBuilder = OkHttpClient.Builder()
+            okHttpBuilder.sslSocketFactory(sslContext.socketFactory)
+            okHttpBuilder.hostnameVerifier { _ , _ ->
+                     true
+            }
+
             val retrofit = retrofit2.Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
+                    .client(okHttpBuilder.build())
                     .baseUrl(BASE_URL)
                     .build()
 
