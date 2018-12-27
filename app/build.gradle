@@ -4,46 +4,49 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
-    defaultConfig {
-        applicationId "homeway.com.challenge"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  compileSdkVersion 28
+  defaultConfig {
+    applicationId "homeway.com.challenge"
+    minSdkVersion 21
+    targetSdkVersion 28
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    debug {
+      debuggable true
     }
-    buildTypes {
-        debug{
-            debuggable true
-        }
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
+  }
 }
 
 dependencies {
-    implementation project(':viewmodel')
-    implementation project(':network')
-    implementation project(':database')
+  implementation project(':viewmodel')
+
+  implementation group: 'androidx.lifecycle', name: 'lifecycle-runtime', version: lifecycle_version
+  implementation group: 'androidx.lifecycle', name: 'lifecycle-extensions', version: lifecycle_version
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: rxjavaVersion
+  //Utilized only to establish a global rx error handl;er
 
-    api group: 'com.google.dagger', name: 'dagger', version: daggerVersion
-    kapt group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion
+  api group: 'com.google.dagger', name: 'dagger', version: daggerVersion
+  kapt group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion
 
-    api group: 'com.google.dagger', name: 'dagger-android-support', version:daggerVersion
-    kapt group: 'com.google.dagger', name: 'dagger-android-processor', version:daggerVersion
+  api group: 'com.google.dagger', name: 'dagger-android-support', version: daggerVersion
+  kapt group: 'com.google.dagger', name: 'dagger-android-processor', version: daggerVersion
 
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    implementation 'com.google.android.material:material:1.1.0-alpha02'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+  implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
+  implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+  implementation 'com.google.android.material:material:1.1.0-alpha02'
+  testImplementation 'junit:junit:4.12'
+  androidTestImplementation 'androidx.test:runner:1.1.1'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
 repositories {
-    mavenCentral()
+  mavenCentral()
 }

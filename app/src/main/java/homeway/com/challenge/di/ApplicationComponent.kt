@@ -7,15 +7,11 @@ import javax.inject.Singleton
 
 import dagger.android.support.AndroidSupportInjectionModule
 import homeway.com.challenge.ChallengeApplication
-import homeway.com.database.DatabaseModule
-import homeway.com.network.NetworkModule
-import homeway.com.viewmodel.di.ViewModelModule
 
 @Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
-    ApplicationModule::class,
-    ViewModelModule::class])
+    ApplicationModule::class])
 interface ApplicationComponent {
 
     @Component.Builder

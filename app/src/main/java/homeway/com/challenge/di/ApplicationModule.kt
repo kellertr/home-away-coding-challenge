@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 import homeway.com.viewmodel.di.ViewModelModule
 
-@Module(includes = [ViewModelModule::class])
+@Module(includes = [ViewModelModule::class, ActivitiesModule::class])
 class ApplicationModule {
 
     @Provides

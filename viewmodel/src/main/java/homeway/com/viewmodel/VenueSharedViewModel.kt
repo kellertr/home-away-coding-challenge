@@ -1,4 +1,6 @@
 package homeway.com.viewmodel
 
-class VenueSharedViewModel : BaseViewModel() {
+import javax.inject.Inject
+
+class VenueSharedViewModel @Inject constructor() : BaseViewModel() {
 }

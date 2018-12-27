@@ -25,8 +25,8 @@ android {
 }
 
 dependencies {
-  implementation project(':network')
-  implementation project(':database')
+  api project(':network')
+  api project(':database')
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
@@ -35,7 +35,6 @@ dependencies {
 
   implementation group: 'androidx.lifecycle', name: 'lifecycle-runtime', version: lifecycle_version
   implementation group: 'androidx.lifecycle', name: 'lifecycle-extensions', version: lifecycle_version
-  implementation group: 'androidx.lifecycle', name: 'lifecycle-common-java8', version: lifecycle_version
 
   implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: rxjavaVersion
   implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: rxAndroidVersion
