@@ -1,6 +1,7 @@
 package homeway.com.database
 
 import androidx.room.*
+import io.reactivex.Observable
 import io.reactivex.Single
 
 
@@ -18,7 +19,7 @@ interface VenueDao {
      * @return a single that will emit a list of Venue Entries
      */
     @Query("SELECT * FROM favorites where venueId IN (:venueIds)")
-    fun favoriteVenues( venueIds: List<String> ): Single<List<VenueEntry>>
+    fun favoriteVenues( venueIds: List<String> ): Observable<List<VenueEntry>>
 
     /**
      * This method will get a favorite venue from the VenueDatabase for a given venueID.

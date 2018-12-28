@@ -4,25 +4,38 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import homeway.com.database.VenueDatabaseManager
-import homeway.com.model.venue.Venue
 import homeway.com.network.FourSquareManager
+import homeway.com.viewmodel.model.VenueSearchDisplay
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class VenueListViewModel @Inject constructor( private val venueDatabaseManager: VenueDatabaseManager,
-                                              private val fourSquareManager: FourSquareManager) : BaseViewModel() {
+class VenueListViewModel @Inject constructor(private val venueDatabaseManager: VenueDatabaseManager,
+                                             private val fourSquareManager: FourSquareManager) : BaseViewModel() {
 
     private val TAG = VenueListViewModel::class.java.simpleName
 
-    fun getVenueListLiveData(): LiveData<List<Venue>> = venueListLiveData
+    fun getVenueListLiveData(): LiveData<List<VenueSearchDisplay>> = venueListLiveData
 
-    private val venueListLiveData = MutableLiveData<List<Venue>>()
+    private val venueListLiveData = MutableLiveData<List<VenueSearchDisplay>>()
 
-    fun venueSearchTermUpdated( searchTerm: String ){
+    fun venueSearchTermUpdated(searchTerm: String) {
         disposables.clear()
-        val disposable = fourSquareManager.getPlaces(searchTerm).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe({ venues ->
+
+        val disposable = fourSquareManager.getPlaces(searchTerm).toObservable().subscribeOn(Schedulers.io())
+                .flatMap({ venues ->
+                    venueDatabaseManager.favoriteVenues(venues.map { it.id })
+                }, { venues, favoriteVenueIds ->
+                    venues.map { venue ->
+                        VenueSearchDisplay(name = venue.name,
+                                distance = venue.location.distance,
+                                id = venue.id,
+                                category = if (venue.categories.isNotEmpty()) venue.categories.get(0).name
+                                else null,
+                                favorite = favoriteVenueIds.contains(venue.id))
+                    }
+                }).observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ venues ->
                     venueListLiveData.value = venues
                 }, {
                     //TODO empty list

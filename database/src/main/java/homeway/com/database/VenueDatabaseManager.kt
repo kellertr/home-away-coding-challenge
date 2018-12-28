@@ -1,5 +1,6 @@
 package homeway.com.database
 
+import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -16,7 +17,7 @@ class VenueDatabaseManager @Inject constructor(private val venueDao: VenueDao){
      * @param venueIds is a list of Venue ids that we would like to validate whether or not they are favorited or not
      * @return a single that will emit a list of venue ids that correspond to the lookup of any favorited venues
      */
-    fun favoriteVenues( venueIds: List<String> ): Single<List<String>> {
+    fun favoriteVenues( venueIds: List<String> ): Observable<List<String>> {
         return venueDao.favoriteVenues(venueIds).map { dbEntries ->
 
             val favoriteIds = ArrayList<String>()

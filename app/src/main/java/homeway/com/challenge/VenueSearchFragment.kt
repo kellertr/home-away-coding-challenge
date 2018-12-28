@@ -16,6 +16,7 @@ import homeway.com.challenge.view.VenueAdapter
 import homeway.com.challenge.view.VenueViewHolder
 import homeway.com.model.venue.Venue
 import homeway.com.viewmodel.VenueListViewModel
+import homeway.com.viewmodel.model.VenueSearchDisplay
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
@@ -63,7 +64,7 @@ class VenueSearchFragment : Fragment() {
         }
     }
 
-    private val updateVenueList = Observer<List<Venue>> { venues ->
+    private val updateVenueList = Observer<List<VenueSearchDisplay>> { venues ->
         Log.v(TAG, "Venues received")
         venueListAdapter.data = venues
         venueListAdapter.notifyDataSetChanged()

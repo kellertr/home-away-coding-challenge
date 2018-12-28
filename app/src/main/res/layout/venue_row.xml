@@ -35,6 +35,13 @@
         android:textSize="@dimen/sub_heading_text_size"
         tools:text="@string/search_hint"/>
 
-
+    <ImageView
+        android:id="@+id/venueFavorite"
+        android:layout_width="@dimen/favorite_icon_size"
+        android:layout_height="@dimen/favorite_icon_size"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/empty_star"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
