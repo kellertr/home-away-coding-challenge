@@ -11,21 +11,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import homeway.com.challenge.view.VenueAdapter
-import homeway.com.challenge.view.VenueViewHolder
-import homeway.com.model.venue.Venue
+import homeway.com.challenge.view.VenueRowInterface
 import homeway.com.viewmodel.VenueListViewModel
 import homeway.com.viewmodel.model.VenueSearchDisplay
 import kotlinx.android.synthetic.main.fragment_main.*
 import javax.inject.Inject
 
-
-
 /**
  * A placeholder fragment containing a simple view.
  */
-class VenueSearchFragment : Fragment() {
+class VenueSearchFragment : Fragment(), VenueRowInterface {
     val TAG = VenueSearchFragment::class.java.simpleName
 
     @Inject
@@ -49,7 +45,7 @@ class VenueSearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        venueListAdapter = VenueAdapter(view = venueList)
+        venueListAdapter = VenueAdapter(view = venueList, venueRowInterface = this)
         venueList.layoutManager = LinearLayoutManager(context)
         venueList.adapter = venueListAdapter
 
@@ -59,15 +55,21 @@ class VenueSearchFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewLifecycleOwner.apply {
-            venueListViewModel.getVenueListLiveData().observe(this, updateVenueList)
-        }
+        venueListViewModel.getVenueListLiveData().observe(viewLifecycleOwner, updateVenueList)
+        venueListViewModel.getVenueModifiedLiveData().observe(viewLifecycleOwner, updateVenueFavorited)
     }
 
     private val updateVenueList = Observer<List<VenueSearchDisplay>> { venues ->
         Log.v(TAG, "Venues received")
-        venueListAdapter.data = venues
+        venueListAdapter.data = venues.toMutableList()
         venueListAdapter.notifyDataSetChanged()
+    }
+
+    private val updateVenueFavorited = Observer<Pair<Int, VenueSearchDisplay>> { venuePosition ->
+
+        if( venuePosition != null && venueListAdapter.data.size > venuePosition.first){
+            venueListAdapter.data[venuePosition.first] = venuePosition.second
+        }
     }
 
     override fun onResume() {
@@ -89,5 +91,13 @@ class VenueSearchFragment : Fragment() {
                 return true
             }
         } )
+    }
+
+    override fun onFavoriteClicked(venueSearchDisplay: VenueSearchDisplay, position: Int) {
+        venueListViewModel.venueFavorited(venueSearchDisplay, position)
+    }
+
+    override fun onRowClicked(venueSearchDisplay: VenueSearchDisplay) {
+
     }
 }

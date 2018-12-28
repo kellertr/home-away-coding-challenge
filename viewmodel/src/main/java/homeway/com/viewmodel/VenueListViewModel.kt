@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import homeway.com.database.VenueDatabaseManager
 import homeway.com.network.FourSquareManager
 import homeway.com.viewmodel.model.VenueSearchDisplay
+import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -16,11 +17,14 @@ class VenueListViewModel @Inject constructor(private val venueDatabaseManager: V
     private val TAG = VenueListViewModel::class.java.simpleName
 
     fun getVenueListLiveData(): LiveData<List<VenueSearchDisplay>> = venueListLiveData
+    fun getVenueModifiedLiveData(): LiveData<Pair<Int, VenueSearchDisplay>> = venueModifiedLiveData
 
     private val venueListLiveData = MutableLiveData<List<VenueSearchDisplay>>()
+    private val venueModifiedLiveData = MutableLiveData<Pair<Int, VenueSearchDisplay>>()
 
     fun venueSearchTermUpdated(searchTerm: String) {
         disposables.clear()
+        venueModifiedLiveData.value = null
 
         val disposable = fourSquareManager.getPlaces(searchTerm).toObservable().subscribeOn(Schedulers.io())
                 .flatMap({ venues ->
@@ -43,6 +47,23 @@ class VenueListViewModel @Inject constructor(private val venueDatabaseManager: V
                 })
 
         disposables.add(disposable)
+    }
+
+    fun venueFavorited(venue: VenueSearchDisplay, position: Int) {
+        disposables.add(Completable.fromCallable {
+            venue.favorite = venue.favorite.not()
+
+            if (venue.favorite) {
+                venueDatabaseManager.insert(venue.id)
+            } else {
+                venueDatabaseManager.remove(venue.id)
+            }
+
+        }.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).doOnComplete {
+                    venueModifiedLiveData.value = Pair(position, venue)
+                    venueModifiedLiveData.value = null
+                }.subscribe())
     }
 
 }
