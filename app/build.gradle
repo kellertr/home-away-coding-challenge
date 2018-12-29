@@ -22,6 +22,9 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+  androidExtensions {
+    experimental = true
+  }
 }
 
 dependencies {
@@ -35,6 +38,7 @@ dependencies {
   //Utilized only to establish a global rx error handl;er
 
   api group: 'com.google.dagger', name: 'dagger', version: daggerVersion
+  implementation 'com.google.android.gms:play-services-maps:16.0.0'
   kapt group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion
 
   api group: 'com.google.dagger', name: 'dagger-android-support', version: daggerVersion

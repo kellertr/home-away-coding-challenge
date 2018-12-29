@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">challenge</string>
+    <string name="app_name">Coding Challenge</string>
     <string name="action_settings">Settings</string>
 
     <string name="search_hint">Venue Search</string>
