@@ -36,7 +36,9 @@ class VenueListViewModel @Inject constructor(private val venueDatabaseManager: V
                                 id = venue.id,
                                 category = if (venue.categories.isNotEmpty()) venue.categories.get(0).name
                                 else null,
-                                favorite = favoriteVenueIds.contains(venue.id))
+                                favorite = favoriteVenueIds.contains(venue.id),
+                                latitude = venue.location.lat,
+                                longitude = venue.location.lng)
                     }
                 }).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ venues ->

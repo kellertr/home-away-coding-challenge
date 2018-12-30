@@ -13,12 +13,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import homeway.com.challenge.R
 import homeway.com.challenge.animation.RevealAnimationSetting
 import homeway.com.challenge.view.VenueAdapter
 import homeway.com.challenge.view.VenueRowInterface
 import homeway.com.viewmodel.VenueListViewModel
+import homeway.com.viewmodel.VenueSharedViewModel
 import homeway.com.viewmodel.model.VenueSearchDisplay
 import kotlinx.android.synthetic.main.venue_search_fragment.*
 import javax.inject.Inject
@@ -32,9 +32,9 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var venueListViewModel: VenueListViewModel
-
-    lateinit var venueListAdapter: VenueAdapter
+    private lateinit var venueListViewModel: VenueListViewModel
+    private lateinit var sharedVenueViewModel: VenueSharedViewModel
+    private lateinit var venueListAdapter: VenueAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,6 +76,10 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        activity?.let {
+            sharedVenueViewModel = ViewModelProviders.of(it, viewModelFactory).get(VenueSharedViewModel::class.java)
+        }
+
         venueListViewModel.getVenueListLiveData().observe(viewLifecycleOwner, updateVenueList)
         venueListViewModel.getVenueModifiedLiveData().observe(viewLifecycleOwner, updateVenueFavorited)
     }
@@ -84,6 +88,10 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
         Log.v(TAG, "Venues received")
         venueListAdapter.data = venues.toMutableList()
         venueListAdapter.notifyDataSetChanged()
+
+        if (venues.isNotEmpty()) { fab.show() } else { fab.hide() }
+
+        sharedVenueViewModel.venues.value = venues
     }
 
     private val updateVenueFavorited = Observer<Pair<Int, VenueSearchDisplay>> { venuePosition ->
@@ -141,6 +149,9 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
 
     override fun onRowClicked(venueSearchDisplay: VenueSearchDisplay) {
 
+        hideKeyboard(venueSearch)
+
+        sharedVenueViewModel.selectedVenue.value = venueSearchDisplay
     }
 
     companion object {

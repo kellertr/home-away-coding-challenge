@@ -6,7 +6,7 @@ package homeway.com.model.venue
 data class VenueLocation(val address: String,
                          val crossStreet: String,
                          val lat: Double,
-                         val long: Double,
+                         val lng: Double,
                          val distance: Int,
                          val postalCode: String,
                          val city: String,
