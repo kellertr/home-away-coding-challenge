@@ -18,6 +18,7 @@ import homeway.com.challenge.animation.RevealAnimationSetting
 import homeway.com.viewmodel.VenueSharedViewModel
 import javax.inject.Inject
 import com.google.android.gms.maps.CameraUpdateFactory
+import homeway.com.challenge.R
 
 
 class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissable {
@@ -75,7 +76,10 @@ class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissab
                 sharedVenueViewModel?.selectedVenue?.value = venues.find {
                     it.name == marker.title && it.latitude == marker.position.latitude && it.longitude == marker.position.longitude }
 
-                //TODO navigate to detail page
+                val fragmentTag = VenueDetailFragment::class.java.simpleName
+                activity?.supportFragmentManager?.beginTransaction()
+                        ?.replace(R.id.fragment_container, VenueDetailFragment.newInstance(),
+                                fragmentTag)?.addToBackStack(fragmentTag)?.commit()
             }
         }
     }
@@ -93,7 +97,6 @@ class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissab
                 val marker = MarkerOptions().position(venueLocation).title(venue.name)
 
                 mMap?.addMarker(marker)
-
             }
         }
 

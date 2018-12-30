@@ -37,6 +37,8 @@ dependencies {
   implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: rxjavaVersion
   //Utilized only to establish a global rx error handl;er
 
+  implementation group: 'com.squareup.picasso', name: 'picasso', version: picassoVersion
+
   api group: 'com.google.dagger', name: 'dagger', version: daggerVersion
   implementation 'com.google.android.gms:play-services-maps:16.0.0'
   kapt group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion

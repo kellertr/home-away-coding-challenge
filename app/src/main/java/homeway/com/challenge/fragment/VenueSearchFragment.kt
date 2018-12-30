@@ -69,7 +69,7 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
             val fragmentTag = VenueMapListFragment::class.java.simpleName
             activity?.supportFragmentManager?.beginTransaction()
                     ?.replace(R.id.fragment_container, VenueMapListFragment.newInstance(fabSettings),
-                            VenueMapListFragment::class.java.simpleName)?.addToBackStack(fragmentTag)?.commit()
+                            fragmentTag)?.addToBackStack(fragmentTag)?.commit()
         }
     }
 
@@ -152,6 +152,12 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
         hideKeyboard(venueSearch)
 
         sharedVenueViewModel.selectedVenue.value = venueSearchDisplay
+
+        val fragmentTag = VenueDetailFragment::class.java.simpleName
+
+        activity?.supportFragmentManager?.beginTransaction()
+                ?.replace(R.id.fragment_container, VenueDetailFragment.newInstance(),
+                        fragmentTag)?.addToBackStack(fragmentTag)?.commit()
     }
 
     companion object {

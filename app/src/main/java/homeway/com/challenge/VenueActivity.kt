@@ -6,12 +6,14 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.appbar.CollapsingToolbarLayout
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import homeway.com.challenge.animation.Dismissable
 import homeway.com.challenge.fragment.VenueSearchFragment
 import homeway.com.viewmodel.VenueSharedViewModel
+import kotlinx.android.synthetic.main.venue_activity.*
 import javax.inject.Inject
 
 class VenueActivity : AppCompatActivity(), HasSupportFragmentInjector {
@@ -19,13 +21,11 @@ class VenueActivity : AppCompatActivity(), HasSupportFragmentInjector {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var sharedViewModel: VenueSharedViewModel
+    private lateinit var sharedViewModel: VenueSharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.venue_activity)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
 
         if( savedInstanceState == null ){
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container,
@@ -34,6 +34,8 @@ class VenueActivity : AppCompatActivity(), HasSupportFragmentInjector {
 
         sharedViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(VenueSharedViewModel::class.java)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
     }
 
     @Inject
