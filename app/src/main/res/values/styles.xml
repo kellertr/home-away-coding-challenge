@@ -15,4 +15,21 @@
         <item name="android:textSize">@dimen/collapsing_toolbar_text_size</item>
     </style>
 
+    <style name="HeadingText">
+        <item name="android:textSize">@dimen/heading_text_size</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="SubHeadingText">
+        <item name="android:textSize">@dimen/sub_heading_text_size</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="HyperLinkText">
+        <item name="android:textSize">@dimen/sub_heading_text_size</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+
+
 </resources>

@@ -36,6 +36,8 @@ class VenueActivity : AppCompatActivity(), HasSupportFragmentInjector {
                 .get(VenueSharedViewModel::class.java)
 
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        actionBar?.title = getString(R.string.app_name)
     }
 
     @Inject

@@ -15,6 +15,7 @@
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false"
             app:expandedTitleTextAppearance="@style/ExpandingTextColor">
 
             <ImageView

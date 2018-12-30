@@ -42,6 +42,17 @@ class VenueViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
     }
 
-    private fun setFavoriteView( favoriteView: ImageView, favorite: Boolean ) =
-            favoriteView.setImageResource(if (favorite) R.drawable.filled_star else R.drawable.empty_star )
+    private fun setFavoriteView( favoriteView: ImageView, favorite: Boolean ) {
+
+        favoriteView.apply {
+            if( favorite ){
+                setImageResource(R.drawable.filled_star)
+                contentDescription = favoriteView.context.getString(R.string.content_description_favorite)
+            } else {
+                setImageResource(R.drawable.empty_star)
+                contentDescription = favoriteView.context.getString(R.string.content_description_make_favorite)
+            }
+        }
+    }
+
 }

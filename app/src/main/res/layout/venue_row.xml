@@ -11,8 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="@color/black"
-        android:textSize="@dimen/heading_text_size"
+        style="@style/HeadingText"
         tools:text="@string/search_hint"/>
 
     <TextView
@@ -21,8 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/text_spacing_margin"
         app:layout_constraintTop_toBottomOf="@id/venueName"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/sub_heading_text_size"
+        style="@style/SubHeadingText"
         tools:text="@string/search_hint"/>
 
     <TextView
@@ -31,8 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/text_spacing_margin"
         app:layout_constraintTop_toBottomOf="@id/venueCategory"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/sub_heading_text_size"
+        style="@style/SubHeadingText"
         tools:text="@string/search_hint"/>
 
     <ImageView

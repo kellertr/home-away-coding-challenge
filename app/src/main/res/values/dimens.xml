@@ -8,6 +8,7 @@
 
     <!-- Padding -->
     <dimen name="venue_row_padding">15dp</dimen>
+    <dimen name="venue_detail_padding">15dp</dimen>
 
     <!--Text Sizes -->
     <dimen name="heading_text_size">20sp</dimen>

@@ -32,7 +32,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/map_white" />
+        app:srcCompat="@drawable/map_white"
+        android:contentDescription="@string/content_description_view_map"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
