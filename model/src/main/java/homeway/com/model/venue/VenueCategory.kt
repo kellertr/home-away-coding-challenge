@@ -8,14 +8,7 @@ data class VenueCategory(val id: String,
                          val pluralName: String,
                          val shortName: String,
                          val primary: Boolean,
-                         val icon: VenueIcon){
-
-    /**
-     * An easier way to get the icon url rather than returning two strings or the whole object for a
-     * VenueIcon
-     */
-    val iconUrl = "${icon.prefix}${icon.suffix}"
-}
+                         val icon: VenueIcon)
 
 /**
  * A class that maps to a service response from the FourSquare API for icons associated to a venue

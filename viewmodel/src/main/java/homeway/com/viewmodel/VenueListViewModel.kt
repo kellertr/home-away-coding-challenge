@@ -15,6 +15,7 @@ class VenueListViewModel @Inject constructor(private val venueDatabaseManager: V
                                              private val fourSquareManager: FourSquareManager) : BaseViewModel() {
 
     private val TAG = VenueListViewModel::class.java.simpleName
+    private val ICON_IMAGE_SIZE = 512
 
     fun getVenueListLiveData(): LiveData<List<VenueSearchDisplay>> = venueListLiveData
     fun getVenueModifiedLiveData(): LiveData<Pair<Int, VenueSearchDisplay>> = venueModifiedLiveData
@@ -31,14 +32,22 @@ class VenueListViewModel @Inject constructor(private val venueDatabaseManager: V
                     venueDatabaseManager.favoriteVenues(venues.map { it.id })
                 }, { venues, favoriteVenueIds ->
                     venues.map { venue ->
-                        VenueSearchDisplay(name = venue.name,
+
+                        val category = if (venue.categories.isNotEmpty()) venue.categories[0] else null
+
+                        val displayVenue = VenueSearchDisplay(name = venue.name,
                                 distance = venue.location.distance,
                                 id = venue.id,
-                                category = if (venue.categories.isNotEmpty()) venue.categories.get(0).name
-                                else null,
                                 favorite = favoriteVenueIds.contains(venue.id),
                                 latitude = venue.location.lat,
-                                longitude = venue.location.lng)
+                                longitude = venue.location.lng
+                                )
+
+                        category?.let {
+                            displayVenue.categoryIconUrl = "${it.icon.prefix}$ICON_IMAGE_SIZE${it.icon.suffix}"
+                        }
+
+                        displayVenue
                     }
                 }).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ venues ->

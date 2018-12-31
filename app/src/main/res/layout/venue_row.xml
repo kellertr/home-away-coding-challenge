@@ -1,44 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="@dimen/venue_row_padding"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/venue_row_padding">
+
+    <ImageView
+        android:id="@+id/venueImage"
+        android:layout_width="@dimen/category_icon_size"
+        android:layout_height="@dimen/category_icon_size"
+        android:layout_marginEnd="@dimen/venue_row_margin"
+        android:scaleType="centerCrop"
+        android:tint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/venueName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/venueName"
+        style="@style/HeadingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        style="@style/HeadingText"
-        tools:text="@string/search_hint"/>
+        app:layout_constraintStart_toEndOf="@id/venueImage"
+        tools:text="@string/search_hint" />
 
     <TextView
         android:id="@+id/venueCategory"
+        style="@style/SubHeadingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/text_spacing_margin"
+        app:layout_constraintStart_toEndOf="@id/venueImage"
         app:layout_constraintTop_toBottomOf="@id/venueName"
-        style="@style/SubHeadingText"
-        tools:text="@string/search_hint"/>
+        tools:text="@string/search_hint" />
 
     <TextView
         android:id="@+id/venueDistance"
+        style="@style/SubHeadingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/text_spacing_margin"
-        app:layout_constraintTop_toBottomOf="@id/venueCategory"
-        style="@style/SubHeadingText"
-        tools:text="@string/search_hint"/>
+        app:layout_constraintStart_toEndOf="@id/venueImage"
+        app:layout_constraintTop_toBottomOf="@id/venueName"
+        tools:text="@string/search_hint" />
 
     <ImageView
         android:id="@+id/venueFavorite"
         android:layout_width="@dimen/favorite_icon_size"
         android:layout_height="@dimen/favorite_icon_size"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/empty_star"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/empty_star"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

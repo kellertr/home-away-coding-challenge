@@ -2,6 +2,7 @@
     <!-- Margins -->
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_spacing_margin">3dp</dimen>
+    <dimen name="venue_row_margin">10dp</dimen>
 
     <!-- View Dimensions -->
     <dimen name="collapsing_toolbar_height">400dp</dimen>
@@ -19,4 +20,5 @@
     <dimen name="favorite_icon_size">24dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="category_icon_size">60dp</dimen>
 </resources>

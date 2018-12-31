@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import homeway.com.challenge.R
 import homeway.com.viewmodel.model.VenueSearchDisplay
 
@@ -30,6 +31,13 @@ class VenueViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             distanceText.text = itemView.context.getString(R.string.distance_to_seattle, it)
             distanceText.visibility = View.VISIBLE
         }
+
+        val categoryIconImageView = itemView.findViewById<ImageView>(R.id.venueImage)
+
+        venue.categoryIconUrl?.let { imageUrl ->
+            categoryIconImageView.visibility = View.VISIBLE
+            Picasso.get().load( imageUrl ).into(categoryIconImageView)
+        } ?: run { categoryIconImageView.visibility = View.GONE }
 
         val favoriteVenueView = itemView.findViewById<ImageView>(R.id.venueFavorite)
 
