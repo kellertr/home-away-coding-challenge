@@ -2,6 +2,7 @@ package homeway.com.challenge.fragment
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -64,12 +65,17 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
                     containerView.width,
                     containerView.height)
 
-            hideKeyboard(venueSearch)
+            val venueMapFragment = VenueMapListFragment.newInstance(fabSettings)
 
-            val fragmentTag = VenueMapListFragment::class.java.simpleName
-            activity?.supportFragmentManager?.beginTransaction()
-                    ?.replace(R.id.fragment_container, VenueMapListFragment.newInstance(fabSettings),
-                            fragmentTag)?.addToBackStack(fragmentTag)?.commit()
+            if( venueSearch.hasFocus() ){
+                hideKeyboard(venueSearch)
+
+                Handler().postDelayed( {
+                    FragmentRunner.activateNewFragment( activity, venueMapFragment )
+                }, 200)
+            } else {
+                FragmentRunner.activateNewFragment( activity, venueMapFragment )
+            }
         }
     }
 
@@ -153,11 +159,7 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
 
         sharedVenueViewModel.selectedVenue.value = displayVenue
 
-        val fragmentTag = VenueDetailFragment::class.java.simpleName
-
-        activity?.supportFragmentManager?.beginTransaction()
-                ?.replace(R.id.fragment_container, VenueDetailFragment.newInstance(),
-                        fragmentTag)?.addToBackStack(fragmentTag)?.commit()
+        FragmentRunner.activateNewFragment( activity, VenueDetailFragment.newInstance() )
     }
 
     companion object {

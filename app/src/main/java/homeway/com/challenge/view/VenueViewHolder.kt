@@ -47,7 +47,7 @@ class VenueViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         venue.categoryIconUrl?.let { imageUrl ->
             categoryIconImageView.visibility = View.VISIBLE
             Picasso.get().load( imageUrl ).into(categoryIconImageView)
-        } ?: run { categoryIconImageView.visibility = View.GONE }
+        } ?: run { categoryIconImageView.setImageDrawable(null) }
 
         val favoriteVenueView = itemView.findViewById<ImageView>(R.id.venueFavorite)
 

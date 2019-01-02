@@ -34,7 +34,7 @@ object AppInjector {
                     object : FragmentManager.FragmentLifecycleCallbacks() {
                         override fun onFragmentPreAttached(fm: FragmentManager, f: Fragment, context: Context) {
                             super.onFragmentPreAttached(fm, f, context)
-                                AndroidSupportInjection.inject(f)
+                            AndroidSupportInjection.inject(f)
                         }
                     }, true)
         }

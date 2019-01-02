@@ -18,11 +18,12 @@ import homeway.com.challenge.animation.RevealAnimationSetting
 import homeway.com.viewmodel.VenueSharedViewModel
 import javax.inject.Inject
 import com.google.android.gms.maps.CameraUpdateFactory
-import homeway.com.challenge.R
 
-
+/**
+ * The VenueMapListFragment displays a list of venues on a google map. It displays an item with a pin
+ * at each venue position and will navigate to the VenueDetailFragment upon clicking any of the pins.
+ */
 class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissable {
-    private val TAG = VenueMapListFragment::class.java.simpleName
 
     private var mMap: GoogleMap? = null
     private lateinit var fabAnimationSettings: RevealAnimationSetting
@@ -42,11 +43,10 @@ class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissab
                               savedInstanceState: Bundle?): View {
         val mapView = super.onCreateView(inflater, container, savedInstanceState)!!
 
-        context?.let { context ->
-            arguments?.getParcelable<RevealAnimationSetting>(ANIMATION_SETTINGS_TAG)?.let { animationSettings ->
-                fabAnimationSettings = animationSettings
-                FabAnimationUtils.registerCircularRevealAnimation(mapView, animationSettings)
-            }
+        //Retrieve our animation settings from the bundle that we will utilize to animate out of this fragment
+        arguments?.getParcelable<RevealAnimationSetting>(ANIMATION_SETTINGS_TAG)?.let { animationSettings ->
+            fabAnimationSettings = animationSettings
+            FabAnimationUtils.registerCircularRevealAnimation(mapView, animationSettings)
         }
 
         return mapView
@@ -66,24 +66,29 @@ class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissab
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
+        mMap?.setMinZoomPreference(10f)
 
         if (sharedVenueViewModel != null) {
             displayVenueMarkers()
         }
 
+        //We add an onInfoWindow click listener to process clicks on each individual marker window. Upon clicking on the
+        //info window, we iterate through the venues in the shared view model and set the selected
+        //venue in the shared view model here
         mMap?.setOnInfoWindowClickListener { marker ->
             sharedVenueViewModel?.venues?.value?.let { venues ->
                 sharedVenueViewModel?.selectedVenue?.value = venues.find {
                     it.name == marker.title && it.latitude == marker.position.latitude && it.longitude == marker.position.longitude }
 
-                val fragmentTag = VenueDetailFragment::class.java.simpleName
-                activity?.supportFragmentManager?.beginTransaction()
-                        ?.replace(R.id.fragment_container, VenueDetailFragment.newInstance(),
-                                fragmentTag)?.addToBackStack(fragmentTag)?.commit()
+                FragmentRunner.activateNewFragment( activity, VenueDetailFragment.newInstance() )
             }
         }
     }
 
+    /**
+     * displayVenueMarkers() is responsible for reading menus from the shared view model and displaying
+     * the markers on the Google Map
+     */
     private fun displayVenueMarkers() {
         mMap?.clear()
 
@@ -104,7 +109,7 @@ class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissab
     }
 
     override fun dismiss(listener: Dismissable.OnDismissedListener) {
-        context?.let { context ->
+        context?.let { _ ->
             view?.let { view ->
                 FabAnimationUtils.startCircularExitAnimation(view, fabAnimationSettings, listener)
             }
@@ -115,6 +120,12 @@ class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissab
 
         private const val ANIMATION_SETTINGS_TAG = "ANIMATION_SETTINGS"
 
+        /**
+         * Create a new instance of the VenueMapListFragment
+         *
+         * @param setting  the reveal animation settings we use when exiting the VenueMapListFragment
+         * @return a new instance of the VenueMapListFragment
+         */
         fun newInstance(setting: RevealAnimationSetting): VenueMapListFragment {
             val frag = VenueMapListFragment()
             val bundle = Bundle().apply {

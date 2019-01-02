@@ -7,7 +7,9 @@ import homeway.com.challenge.fragment.VenueDetailFragment
 import homeway.com.challenge.fragment.VenueMapListFragment
 import homeway.com.challenge.fragment.VenueSearchFragment
 
-
+/**
+ * Activies Module will contain all Fragments and Activities that need to be injected
+ */
 @Suppress("unused")
 @Module
 abstract class ActivitiesModule {
