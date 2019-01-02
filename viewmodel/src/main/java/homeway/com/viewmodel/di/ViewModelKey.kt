@@ -4,6 +4,9 @@ import androidx.lifecycle.ViewModel
 import dagger.MapKey
 import kotlin.reflect.KClass
 
+/**
+ * ViewModelKey is our custom annotation class for Binding ViewModels using MultiBinding
+ */
 @MustBeDocumented
 @Target(
         AnnotationTarget.FUNCTION,

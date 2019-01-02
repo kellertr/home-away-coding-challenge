@@ -3,6 +3,7 @@ package homeway.com.network
 import homeway.com.model.venue.Venue
 import io.reactivex.Single
 import java.lang.Exception
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -21,11 +22,7 @@ class FourSquareManager @Inject constructor(private val fourSquareAPI: FourSquar
      */
     fun getPlaces( query: String ) : Single<List<Venue>> {
         return fourSquareAPI.getPlaces(searchTerm = query).map {
-            if( it == null || it.response == null || it.response.venues?.isEmpty() == true ){
-                throw EmptyVenueListException()
-            }
-
-            it.response.venues
+            it.response?.venues ?: Collections.emptyList()
         }
     }
 
@@ -51,7 +48,6 @@ class FourSquareManager @Inject constructor(private val fourSquareAPI: FourSquar
  * These exceptions are utilized when we are unable to find any more information on a given search
  * term or venue
  */
-class EmptyVenueListException : Exception()
 class EmptyVenueException : Exception()
 
 

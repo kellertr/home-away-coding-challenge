@@ -6,6 +6,10 @@ import javax.inject.Inject
 import javax.inject.Provider
 import javax.inject.Singleton
 
+/**
+ * The ViewModelFactory is utilized when creating our ViewModel classes. We will utilize the maps
+ * created by the Dagger Multibinding to pass all of our viewmodels to this factory
+ */
 @Singleton
 class ViewModelFactory @Inject constructor(
         private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>

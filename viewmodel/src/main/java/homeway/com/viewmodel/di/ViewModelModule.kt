@@ -11,6 +11,11 @@ import homeway.com.viewmodel.VenueDetailViewModel
 import homeway.com.viewmodel.VenueListViewModel
 import homeway.com.viewmodel.VenueSharedViewModel
 
+/**
+ * The ViewModelModule is used to build the graph for the ViewModel layer. We will use multibinding to
+ * bind all of our ViewModel classes. These viewModel classes will be utilized to create the
+ * ViewModelFactory which will be injected in each fragment.
+ */
 @Module(includes = [NetworkModule::class, DatabaseModule::class])
 abstract class ViewModelModule {
     @Binds
