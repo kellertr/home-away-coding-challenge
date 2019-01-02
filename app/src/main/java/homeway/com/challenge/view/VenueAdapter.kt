@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import homeway.com.challenge.R
-import homeway.com.viewmodel.model.VenueSearchDisplay
+import homeway.com.viewmodel.model.DisplayVenue
 import java.util.*
 
-class VenueAdapter(var data: MutableList<VenueSearchDisplay> = Collections.emptyList(), val view: RecyclerView, val venueRowInterface: VenueRowInterface)
+class VenueAdapter(var data: MutableList<DisplayVenue> = Collections.emptyList(), val view: RecyclerView, val venueRowInterface: VenueRowInterface)
     : RecyclerView.Adapter<VenueViewHolder>(), VenueFavoritedInterface {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = VenueViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.venue_row,
@@ -24,11 +24,11 @@ class VenueAdapter(var data: MutableList<VenueSearchDisplay> = Collections.empty
         }
     }
 
-    override fun venueFavoriteAdjusted(venueSearchDisplay: VenueSearchDisplay, position: Int) {
-        venueRowInterface.onFavoriteClicked(venueSearchDisplay, position)
+    override fun venueFavoriteAdjusted(displayVenue: DisplayVenue, position: Int) {
+        venueRowInterface.onFavoriteClicked(displayVenue, position)
     }
 }
 
 interface VenueFavoritedInterface {
-    fun venueFavoriteAdjusted(venueSearchDisplay: VenueSearchDisplay, position: Int)
+    fun venueFavoriteAdjusted(displayVenue: DisplayVenue, position: Int)
 }

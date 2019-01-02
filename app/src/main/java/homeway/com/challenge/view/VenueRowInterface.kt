@@ -1,8 +1,8 @@
 package homeway.com.challenge.view
 
-import homeway.com.viewmodel.model.VenueSearchDisplay
+import homeway.com.viewmodel.model.DisplayVenue
 
 interface VenueRowInterface {
-    fun onFavoriteClicked(venueSearchDisplay: VenueSearchDisplay, position: Int)
-    fun onRowClicked(venueSearchDisplay: VenueSearchDisplay)
+    fun onFavoriteClicked(displayVenue: DisplayVenue, position: Int)
+    fun onRowClicked(displayVenue: DisplayVenue)
 }

@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso
 import homeway.com.challenge.R
 import homeway.com.viewmodel.VenueDetailViewModel
 import homeway.com.viewmodel.VenueSharedViewModel
-import homeway.com.viewmodel.model.VenueSearchDisplay
+import homeway.com.viewmodel.model.DisplayVenue
 import kotlinx.android.synthetic.main.venue_detail_fragment.*
 import javax.inject.Inject
 import android.content.ActivityNotFoundException
@@ -89,7 +89,7 @@ class VenueDetailFragment : Fragment() {
         }
     }
 
-    private val updateVenues = Observer<VenueSearchDisplay> { venue->
+    private val updateVenues = Observer<DisplayVenue> { venue->
         Log.v(TAG, "Venue received $venue")
 
         venueFavorited.visibility = if(venue.favorite) View.VISIBLE else View.GONE

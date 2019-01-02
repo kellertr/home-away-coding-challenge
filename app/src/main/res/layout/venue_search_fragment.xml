@@ -15,7 +15,6 @@
         android:queryHint="@string/search_hint"
         app:iconifiedByDefault="false"/>
 
-    <!--TODO recycler view scrolls under bottom nav -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/venueList"
         android:layout_width="match_parent"

@@ -19,7 +19,7 @@ import homeway.com.challenge.view.VenueAdapter
 import homeway.com.challenge.view.VenueRowInterface
 import homeway.com.viewmodel.VenueListViewModel
 import homeway.com.viewmodel.VenueSharedViewModel
-import homeway.com.viewmodel.model.VenueSearchDisplay
+import homeway.com.viewmodel.model.DisplayVenue
 import kotlinx.android.synthetic.main.venue_search_fragment.*
 import javax.inject.Inject
 
@@ -84,7 +84,7 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
         venueListViewModel.getVenueModifiedLiveData().observe(viewLifecycleOwner, updateVenueFavorited)
     }
 
-    private val updateVenueList = Observer<List<VenueSearchDisplay>> { venues ->
+    private val updateVenueList = Observer<List<DisplayVenue>> { venues ->
         Log.v(TAG, "Venues received")
         venueListAdapter.data = venues.toMutableList()
         venueListAdapter.notifyDataSetChanged()
@@ -94,7 +94,7 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
         sharedVenueViewModel.venues.value = venues
     }
 
-    private val updateVenueFavorited = Observer<Pair<Int, VenueSearchDisplay>> { venuePosition ->
+    private val updateVenueFavorited = Observer<Pair<Int, DisplayVenue>> { venuePosition ->
 
         if( venuePosition != null && venueListAdapter.data.size > venuePosition.first){
             venueListAdapter.data[venuePosition.first] = venuePosition.second
@@ -143,15 +143,15 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
         }
     }
 
-    override fun onFavoriteClicked(venueSearchDisplay: VenueSearchDisplay, position: Int) {
-        venueListViewModel.venueFavorited(venueSearchDisplay, position)
+    override fun onFavoriteClicked(displayVenue: DisplayVenue, position: Int) {
+        venueListViewModel.venueFavorited(displayVenue, position)
     }
 
-    override fun onRowClicked(venueSearchDisplay: VenueSearchDisplay) {
+    override fun onRowClicked(displayVenue: DisplayVenue) {
 
         hideKeyboard(venueSearch)
 
-        sharedVenueViewModel.selectedVenue.value = venueSearchDisplay
+        sharedVenueViewModel.selectedVenue.value = displayVenue
 
         val fragmentTag = VenueDetailFragment::class.java.simpleName
 

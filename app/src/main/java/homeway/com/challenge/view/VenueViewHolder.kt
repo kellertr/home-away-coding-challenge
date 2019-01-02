@@ -6,11 +6,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import homeway.com.challenge.R
-import homeway.com.viewmodel.model.VenueSearchDisplay
+import homeway.com.viewmodel.model.DisplayVenue
 
 class VenueViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind( venue: VenueSearchDisplay, venueFavoritedInterface: VenueFavoritedInterface ){
+    fun bind(venue: DisplayVenue, venueFavoritedInterface: VenueFavoritedInterface ){
         itemView.findViewById<TextView>(R.id.venueName).text = venue.name
 
         val categoryText = itemView.findViewById<TextView>(R.id.venueCategory)
