@@ -12,6 +12,13 @@ buildscript {
     rxAndroidVersion = '2.0.2'
     rxjavaVersion = '2.2.4'
     picassoVersion = '2.71828'
+    playServicesVersion = '16.0.0'
+    jUnitVersion = '4.12'
+    robolectricVersion = '4.1'
+    androidXTestCoreVersion = '1.1.0'
+    androidXTestRunnerVersion = '1.1.1'
+    androidXTestRulesVersion = '1.1.1'
+    androidXTestExtVersion = '1.1.0'
   }
 
   repositories {

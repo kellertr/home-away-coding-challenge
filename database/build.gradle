@@ -3,11 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-  compileSdkVersion 28
+  compileSdkVersion appCompileSdkVerison=28
 
   defaultConfig {
-    minSdkVersion 21
-    targetSdkVersion 28
+    minSdkVersion appMinSdkVersion.toInteger()
+    targetSdkVersion appTargetSdkVersion
     versionCode 1
     versionName "1.0"
 
@@ -37,14 +37,14 @@ dependencies {
   implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
 
   testImplementation "androidx.room:room-testing:$room_version"
-  testImplementation 'junit:junit:4.12'
+  testImplementation "junit:junit:$jUnitVersion"
   testImplementation group: 'com.nhaarman.mockitokotlin2', name: 'mockito-kotlin', version: mockitoKotlinVersion
   testImplementation group: 'android.arch.core', name: 'core-testing', version: lifecycle_version
   testImplementation "androidx.test:core:1.1.0"
-  testImplementation "androidx.test:runner:1.1.1"
-  testImplementation "androidx.test:rules:1.1.1"
-  testImplementation "androidx.test.ext:junit:1.1.0"
-  testImplementation "org.robolectric:robolectric:4.1"
+  testImplementation "androidx.test:runner:$androidXTestRunnerVersion"
+  testImplementation "androidx.test:rules:$androidXTestRulesVersion"
+  testImplementation "androidx.test.ext:junit:$androidXTestExtVersion"
+  testImplementation "org.robolectric:robolectric:$robolectricVersion"
 
 }
 repositories {

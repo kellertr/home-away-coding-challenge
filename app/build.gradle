@@ -4,11 +4,13 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-  compileSdkVersion 28
+  compileSdkVersion appCompileSdkVerison=28
+
   defaultConfig {
-    applicationId "homeway.com.challenge"
-    minSdkVersion 21
-    targetSdkVersion 28
+    minSdkVersion appMinSdkVersion.toInteger()
+    targetSdkVersion appTargetSdkVersion
+    applicationId "homeaway.com.challenge"
+
     versionCode 1
     versionName "1.0"
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -35,12 +37,12 @@ dependencies {
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
   implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: rxjavaVersion
-  //Utilized only to establish a global rx error handl;er
+  //Utilized only to establish a global rx error handler
 
   implementation group: 'com.squareup.picasso', name: 'picasso', version: picassoVersion
 
   api group: 'com.google.dagger', name: 'dagger', version: daggerVersion
-  implementation 'com.google.android.gms:play-services-maps:16.0.0'
+  implementation "com.google.android.gms:play-services-maps:$playServicesVersion"
   kapt group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion
 
   api group: 'com.google.dagger', name: 'dagger-android-support', version: daggerVersion
@@ -49,8 +51,9 @@ dependencies {
   implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
   implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
   implementation 'com.google.android.material:material:1.1.0-alpha02'
-  testImplementation 'junit:junit:4.12'
-  androidTestImplementation 'androidx.test:runner:1.1.1'
+
+  testImplementation "junit:junit:$jUnitVersion"
+  androidTestImplementation "androidx.test:runner:$androidXTestRunnerVersion"
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
 repositories {
