@@ -143,7 +143,7 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
         }
     }
 
-    override fun onFavoriteClicked(displayVenue: DisplayVenue, position: Int) {
+    override fun venueFavoriteAdjusted(displayVenue: DisplayVenue, position: Int) {
         venueListViewModel.venueFavorited(displayVenue, position)
     }
 

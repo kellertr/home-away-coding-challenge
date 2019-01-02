@@ -12,10 +12,16 @@ import homeway.com.challenge.di.DaggerApplicationComponent
 import io.reactivex.exceptions.UndeliverableException
 import io.reactivex.plugins.RxJavaPlugins
 
+/**
+ * ChallengeApplication is our custom Application class for this Application. This class will be
+ * responsible for building the DaggerGraph as well as adding a global RX Exception Handler to prevent
+ * any unexpected crashes
+ */
 class ChallengeApplication : Application(), HasActivityInjector {
 
     val TAG = ChallengeApplication::class.java.simpleName
 
+    //Add An Activity Injector so we can utilize Dagger Android for Activity/Fragment injection
     @Inject
     lateinit var androidInjector: DispatchingAndroidInjector<Activity>
 
