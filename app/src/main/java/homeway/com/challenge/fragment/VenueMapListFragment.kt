@@ -45,7 +45,7 @@ class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissab
         context?.let { context ->
             arguments?.getParcelable<RevealAnimationSetting>(ANIMATION_SETTINGS_TAG)?.let { animationSettings ->
                 fabAnimationSettings = animationSettings
-                FabAnimationUtils.registerCircularRevealAnimation(context, mapView, animationSettings)
+                FabAnimationUtils.registerCircularRevealAnimation(mapView, animationSettings)
             }
         }
 
@@ -106,7 +106,7 @@ class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissab
     override fun dismiss(listener: Dismissable.OnDismissedListener) {
         context?.let { context ->
             view?.let { view ->
-                FabAnimationUtils.startCircularExitAnimation(context, view, fabAnimationSettings, listener)
+                FabAnimationUtils.startCircularExitAnimation(view, fabAnimationSettings, listener)
             }
         }
     }

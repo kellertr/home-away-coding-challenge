@@ -6,48 +6,51 @@ import android.animation.ValueAnimator
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import android.view.ViewAnimationUtils
 import android.animation.ArgbEvaluator
-import android.content.Context
 import android.view.View
 import homeway.com.challenge.R
 
-
+/**
+ * The FabAnimationUtils class will handle the circular reveal and collapse of the FAB
+ */
 object FabAnimationUtils {
-    fun registerCircularRevealAnimation(context: Context, view: View, revealSettings: RevealAnimationSetting) {
-        val startColor = context.resources.getColor(R.color.colorPrimary)
-        val endColor = context.resources.getColor(R.color.white)
+
+    /**
+     * This method will handle the circular reveal animation of a given view. From this view, the view will explode outwards until it encompasses
+     * the entire screen
+     *
+     * @param view is the view we are animating
+     * @param revealSettings are the view settings we are using to animate
+     */
+    fun registerCircularRevealAnimation(view: View, revealSettings: RevealAnimationSetting) {
         view.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
             override fun onLayoutChange(v: View, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
                 v.removeOnLayoutChangeListener(this)
-                val cx = revealSettings.centerX
-                val cy = revealSettings.centerY
-                val width = revealSettings.width
-                val height = revealSettings.height
-                val duration = context.resources.getInteger(android.R.integer.config_mediumAnimTime)
+                val duration = v.resources.getInteger(android.R.integer.config_mediumAnimTime)
 
-                //Simply use the diagonal of the view
-                val finalRadius = Math.sqrt((width * width + height * height).toDouble()).toFloat()
-                val anim = ViewAnimationUtils.createCircularReveal(v, cx, cy, 0f, finalRadius).setDuration(duration.toLong())
+                val anim = ViewAnimationUtils.createCircularReveal(v, revealSettings.centerX,
+                        revealSettings.centerY, 0f, revealSettings.calculateRadius()).setDuration(duration.toLong())
+
                 anim.interpolator = FastOutSlowInInterpolator()
                 anim.start()
-                startColorAnimation(view, startColor, endColor, duration)
+                startColorAnimation(view, v.resources.getColor(R.color.colorPrimary),
+                        v.resources.getColor(R.color.white), duration)
             }
         })
     }
 
-    fun startCircularExitAnimation( context:Context, view: View, revealSettings: RevealAnimationSetting, listener: Dismissable.OnDismissedListener ){
+    /**
+     * This method will exit a given view down into a collapsed view. This method has the exact
+     * opposite effect of registerCircularRevealAnimation()
+     *
+     * @param view is the view which we are animating
+     * @param revealSettings are the view settings we are using to animate down against
+     * @param listener is the interface we will utilize when the view has completed animating
+     */
+    fun startCircularExitAnimation(view: View, revealSettings: RevealAnimationSetting, listener: Dismissable.OnDismissedListener ){
+        val duration = view.resources.getInteger(android.R.integer.config_mediumAnimTime).toLong()
 
-        val endColor = context.resources.getColor(R.color.colorPrimary)
-        val startColor = context.resources.getColor(R.color.white)
-
-        val cx = revealSettings.centerX
-        val cy = revealSettings.centerY
-        val width = revealSettings.width
-        val height = revealSettings.height
-        val duration = context.resources.getInteger(android.R.integer.config_mediumAnimTime).toLong()
-
-
-        val initRadius = Math.sqrt((width * width + height * height).toDouble()).toFloat()
-        val anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, initRadius, 0f).setDuration(duration)
+        val anim = ViewAnimationUtils.createCircularReveal(view, revealSettings.centerX,
+                revealSettings.centerY, revealSettings.calculateRadius(), 0f).setDuration(duration)
         anim.duration = duration
         anim.interpolator = FastOutSlowInInterpolator ()
 
@@ -58,10 +61,18 @@ object FabAnimationUtils {
         } )
 
         anim.start()
-        startColorAnimation(view, startColor, endColor, duration.toInt())
+        startColorAnimation(view, view.resources.getColor(R.color.white), view.resources.getColor(R.color.colorPrimary), duration.toInt())
     }
 
-    internal fun startColorAnimation(view: View, startColor: Int, endColor: Int, duration: Int) {
+    /**
+     * This is a helper method that will trigger a color animation on a given view
+     *
+     * @param view is the view that will be experiencing the color animation
+     * @param startColor is the color to sue at the start of the animation
+     * @param endColor is the desired end color of the animation
+     * @param duration is the time it will take to complete this animation
+     */
+    private fun startColorAnimation(view: View, startColor: Int, endColor: Int, duration: Int) {
         val anim = ValueAnimator()
         anim.setIntValues(startColor, endColor)
         anim.setEvaluator(ArgbEvaluator())
@@ -71,10 +82,26 @@ object FabAnimationUtils {
     }
 }
 
+/**
+ * The Dismissable interface will be utilized in conjunction with FabAnimationUtils. This interface will
+ * be used by calling classes to begin exit animations
+ */
 interface Dismissable {
+
+    /**
+     * The OnDismissedListener will be used in conjunction with Dismissable
+     */
     interface OnDismissedListener {
+
+        /**
+         * The method onDismissed is meant to be invoked when a class has finished animating
+         */
         fun onDismissed()
     }
 
+    /**
+     * This method will begin an exit animation on a given view
+     * @param listener will be invoked when the animation is complete
+     */
     fun dismiss(listener: OnDismissedListener)
 }
