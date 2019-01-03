@@ -1,7 +1,13 @@
 # HomeAway Coding Challenge
 
 An application integrating with FourSquareAPI to allow users to search for venues, see the list of venues on a map and
-view venue details for a given venue.
+view venue details for a given venue. When doing this project, I focused more on the architecture and testing components
+than I did on UI components. I did meet requirements for required views such as CollapsingToolbarLayout and FloatingActionButton,
+but felt it was better to spend the majority of my time on architecture and testing rather than making the UI more polished.
+The application follows the MVVM architecture pattern and makes use of several common libraries, such as Dagger, Retrofit and Room which
+I will talk more about below. There is one viewmodel test that I ignored and will attempt to address when I have some bandwidth over the
+next few days. Ultimately, I did not want that to delay my submission and wanted to move forward with the process. Please reach out if there
+are any pending questions regarding the CodingChallenge application.
 
 ## Application Architecture
 
