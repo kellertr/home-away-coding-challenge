@@ -6,7 +6,6 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import homeway.com.database.DatabaseModule
-import homeway.com.network.NetworkModule
 import homeway.com.viewmodel.VenueDetailViewModel
 import homeway.com.viewmodel.VenueListViewModel
 import homeway.com.viewmodel.VenueSharedViewModel

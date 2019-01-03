@@ -1,7 +1,8 @@
-package homeway.com.network
+package homeway.com.network.di
 
 import dagger.Module
 import dagger.Provides
+import homeway.com.network.FourSquareAPI
 import javax.inject.Singleton
 
 @Module
