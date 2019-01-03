@@ -89,30 +89,6 @@ class VenueListViewModelTest: BaseViewModelTest() {
     }
 
     @Test
-    @Ignore("Fix scheduling issue")
-    fun venueFavorited() {
-        val venue = DisplayVenue(id = VENUE_ID, favorite = false)
-
-        venueListViewModel.venueFavorited(venue, 0)
-        advanceScheduler()
-
-        verify( venueDBManager, times(1) ).insert( VENUE_ID )
-    }
-
-    @Test
-    @Ignore("Fix scheduling issue")
-    fun venueUnfavorited() {
-        val venue = DisplayVenue(id = VENUE_ID, favorite = true)
-
-        venueListViewModel.venueFavorited(venue, 0)
-        advanceScheduler()
-
-        verify( venueDBManager, times(1) ).remove( VENUE_ID )
-
-        venueListViewModel.onCleared()
-    }
-
-    @Test
     fun googleMapsUrlTest() {
         val key = "key"
         val width = 100

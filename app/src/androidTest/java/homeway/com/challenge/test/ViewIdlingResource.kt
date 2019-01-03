@@ -1,4 +1,4 @@
-package homeway.com.challenge
+package homeway.com.challenge.test
 
 import android.app.Activity
 import android.util.Log

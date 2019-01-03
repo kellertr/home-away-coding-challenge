@@ -16,7 +16,7 @@ import homeway.com.viewmodel.VenueSharedViewModel
  * bind all of our ViewModel classes. These viewModel classes will be utilized to create the
  * ViewModelFactory which will be injected in each fragment.
  */
-@Module(includes = [NetworkModule::class, DatabaseModule::class])
+@Module(includes = [DatabaseModule::class])
 abstract class ViewModelModule {
     @Binds
     abstract fun bindViewModelFactoryModule(factory: ViewModelFactory): ViewModelProvider.Factory

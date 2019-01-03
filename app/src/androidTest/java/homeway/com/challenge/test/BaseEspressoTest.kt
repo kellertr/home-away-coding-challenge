@@ -1,33 +1,29 @@
-package homeway.com.challenge
+package homeway.com.challenge.test
 
 import android.app.Activity
 import android.util.Log
-import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingPolicies
 import androidx.test.espresso.IdlingRegistry
-import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.core.internal.deps.guava.collect.Iterables
-import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
 import java.lang.ref.WeakReference
 import androidx.test.runner.lifecycle.Stage.RESUMED
-import org.hamcrest.Matchers.allOf
+import homeway.com.network.FourSquareAPI
+import okhttp3.mockwebserver.Dispatcher
+import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
 import org.junit.BeforeClass
 import java.util.concurrent.TimeUnit
-import androidx.test.InstrumentationRegistry.getTargetContext
-import androidx.test.core.app.ApplicationProvider.getApplicationContext
-import androidx.test.platform.app.InstrumentationRegistry
 
 
-open class BaseEspressoTest {
+abstract class BaseEspressoTest {
     private val TAG = BaseEspressoTest::class.java.simpleName
 
     private var currentActivity: WeakReference<Activity>? = null
-
     private var idlingResource: ViewIdlingResource? = null
+    private var mockWebServer: MockWebServer? = null
 
     fun waitForId( resourceId: Int ){
         idlingResource?.let {
@@ -57,14 +53,24 @@ open class BaseEspressoTest {
         return currentActivity?.get()
     }
 
+    abstract fun getDispatcher(): Dispatcher
+
     @Before
     fun setup(){
+
+        mockWebServer?.shutdown()
+        mockWebServer = MockWebServer()
+        mockWebServer?.start(FourSquareAPI.MOCK_PORT)
+
+        mockWebServer?.setDispatcher(getDispatcher())
+
         getInstrumentation().waitForIdleSync()
         getCurrentActivity()
     }
 
     @After
     fun teardown() {
+
         idlingResource.let {
             IdlingRegistry.getInstance().unregister(idlingResource)
             idlingResource = null

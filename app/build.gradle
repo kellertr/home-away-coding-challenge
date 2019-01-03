@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 android {
   compileSdkVersion appCompileSdkVerison=28
 
+  testBuildType "mock"
+
   defaultConfig {
     minSdkVersion appMinSdkVersion.toInteger()
     targetSdkVersion appTargetSdkVersion
@@ -19,11 +21,15 @@ android {
     debug {
       debuggable true
     }
+
+    mock.initWith(buildTypes.debug)
+
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
+
   androidExtensions {
     experimental = true
   }
@@ -55,8 +61,12 @@ dependencies {
   androidTestImplementation "junit:junit:$jUnitVersion"
   androidTestImplementation "androidx.test.ext:junit:$androidXTestExtVersion"
   androidTestImplementation "androidx.test:rules:$androidXTestRulesVersion"
-  androidTestImplementation "androidx.test.espresso:espresso-core:$espressoCoreVersion"
+  androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+  androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+  androidTestImplementation group: 'com.squareup.okhttp3', name: 'mockwebserver', version: okhttp_version
+
 }
+
 repositories {
   mavenCentral()
 }

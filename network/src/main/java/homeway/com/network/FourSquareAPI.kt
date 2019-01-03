@@ -60,15 +60,22 @@ interface FourSquareAPI {
         const val SEARCH_INTENT = "browse"
         const val RADIUS = 500
 
+        const val MOCK_URL = "http://localhost:8080/"
+        const val MOCK_PORT = 8080
+
         /**
          * Create an instance of the FourSquareAPI utilizing RX and Gson.
          *
          * @return a new instance of the retrofit API
          */
         fun create(): FourSquareAPI {
+            return create(BASE_URL)
+        }
+
+        fun create( baseUrl: String ): FourSquareAPI{
 
             //Trust all certificates, typically we would only want a limited subset of certificates
-            //to prevent man in the middle attacks TODO if time permits
+            //to prevent man in the middle attacks
             val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
                 override fun getAcceptedIssuers(): Array<X509Certificate> {
                     return arrayOf()
@@ -89,14 +96,14 @@ interface FourSquareAPI {
             val okHttpBuilder = OkHttpClient.Builder()
             okHttpBuilder.sslSocketFactory(sslContext.socketFactory)
             okHttpBuilder.hostnameVerifier { _ , _ ->
-                     true
+                true
             }
 
             val retrofit = retrofit2.Retrofit.Builder()
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpBuilder.build())
-                    .baseUrl(BASE_URL)
+                    .baseUrl(baseUrl)
                     .build()
 
             return retrofit.create(FourSquareAPI::class.java)
