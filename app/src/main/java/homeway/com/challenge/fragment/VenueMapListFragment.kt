@@ -119,7 +119,7 @@ class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissab
     companion object {
 
         private const val ANIMATION_SETTINGS_TAG = "ANIMATION_SETTINGS"
-        private const val MAX_ZOOM = 10f
+        private const val MAX_ZOOM = 20f
 
         /**
          * Create a new instance of the VenueMapListFragment

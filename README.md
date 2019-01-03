@@ -127,8 +127,45 @@ inconsistency, and altered data out of the question. It greatly speeds up our Es
 
 ## Building the Application
 
+To build the application from the command line, you need to spin up an instance of the gradle wrapper:
+
+gradle wrapper --gradle-version 4.6
+
 ### Debug/Release versions of the .apk
+
+If you unit test from the command line, we need to build a gradle wrapper and then build the preferred
+variant. The release variant is signed and can be installed via command line.
+
+You can do this using the following commands:
+
+ ./gradlew clean assembleRelease or ./gradlew clean assembleDebug
+
+You can also build these variants from AndroidStudio in the gradle tool window with assembleRelease
+or assembleDebug
+
 
 ### UnitTesting
 
+If you unit test from the command line, we need to build a gradle wrapper and then run the testing suite.
+The release version and debug version have different package names so they can be installed alongside
+one another on the same device.
+You can do this using the following commands:
+
+ ./gradlew clean testDebugUnitTest
+
+On the contrary, you can also run any test individually or at a class level by highlighting the
+method or class and selecting run, or you can execute the whole suite using the Gradle Commands window.
+
 ### Espresso
+
+The Espresso build of this application relies on the mock variant. Utilizing the mock variant allows
+us to make use of MockWebServer. You can build and run the Espresso suite with the following command:
+
+./gradlew clean connectedAndroidTest
+
+If you would like to run Espresso from Android Studio, there is some configuration that needs to be
+done to swtich between building the main application and building the espresso applicaiton. Since the
+Espresso variant relies on the 'mock' build variant, you must change the build variant from the default,
+which is debug, to mock. If you would like to switch back, you must change the selected variant back to
+either debug or release. More information can be found at the following link:
+https://stackoverflow.com/questions/44368130/android-testbuildtype-not-working
