@@ -77,7 +77,6 @@ class VenueListViewModel @Inject constructor(private val venueDatabaseManager: V
                 .subscribe({ venues ->
                     venueListLiveData.value = venues
                 }, {
-                    //TODO empty list
                     Log.e(TAG, "Error retrieving venues", it)
                 })
 
