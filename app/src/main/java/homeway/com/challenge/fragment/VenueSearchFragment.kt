@@ -3,6 +3,7 @@ package homeway.com.challenge.fragment
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.squareup.picasso.Picasso
 import homeway.com.challenge.R
 import homeway.com.challenge.animation.RevealAnimationSetting
 import homeway.com.challenge.view.VenueAdapter
@@ -71,7 +73,13 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
         }
     }
 
+    /**
+     * This is a convenience method that we utilize to calculate animation settings for the Fab and
+     * to animate out to the VenueMapFragment
+     */
     private fun navigateToVenueMapFragment(){
+
+        //Calculate the center of this view and provide container view parameters for RevealAnimationSettings
         val fabSettings = RevealAnimationSetting(
                 (fab.x + fab.width / 2).toInt(),
                 (fab.y + fab.height / 2).toInt(),
@@ -115,31 +123,43 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
     override fun onResume() {
         super.onResume()
 
-        venueSearch.setOnQueryTextListener( object:SearchView.OnQueryTextListener {
-            override fun onQueryTextChange(newText: String?): Boolean {
-                newText?.let{
-                    venueListViewModel.venueSearchTermUpdated(it)
+        activity?.let { fragmentActivity ->
+            val displayMetrics = DisplayMetrics()
+            fragmentActivity.windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+            val staticMapsHeight = fragmentActivity.resources.getDimensionPixelSize(R.dimen.collapsing_toolbar_height)
+            val apiKey = fragmentActivity.getString(R.string.maps_api_key)
+
+            venueSearch.setOnQueryTextListener( object:SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    newText?.let{
+                        venueListViewModel.venueSearchTermUpdated(it, apiKey,
+                                displayMetrics.widthPixels, staticMapsHeight)
+                    }
+                    return true
                 }
-                return true
-            }
 
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                query?.let{
-                    venueListViewModel.venueSearchTermUpdated(it)
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    query?.let{
+                        venueListViewModel.venueSearchTermUpdated(it, apiKey,
+                                displayMetrics.widthPixels, staticMapsHeight)
+                    }
+
+                    hideKeyboard(venueSearch)
+
+                    return true
                 }
-
-                hideKeyboard(venueSearch)
-
-                return true
-            }
-        } )
+            } )
+        }
     }
 
+    /**
+     * This is a convenience method that will hide the keyboard if it is displayed
+     *
+     * @param focusedView is the view that currently has focus that we will clear focus and close the
+     *                    keyboard
+     */
     private fun hideKeyboard(focusedView: View){
-
-        if( focusedView.isFocused ){
-            return
-        }
 
         try {
             val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
@@ -169,8 +189,11 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
 
     companion object {
 
-        private const val KEYBOARD_DISMISS_DELAY: Long = 200
+        private const val KEYBOARD_DISMISS_DELAY: Long = 180
 
+        /**
+         * @return a new instance of the VenueSearchFragment
+         */
         fun newInstance() : VenueSearchFragment = VenueSearchFragment()
     }
 }

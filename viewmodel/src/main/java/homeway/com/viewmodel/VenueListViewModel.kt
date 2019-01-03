@@ -1,8 +1,10 @@
 package homeway.com.viewmodel
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.squareup.picasso.Picasso
 import homeway.com.database.VenueDatabaseManager
 import homeway.com.network.FourSquareManager
 import homeway.com.viewmodel.model.DisplayVenue
@@ -37,7 +39,7 @@ class VenueListViewModel @Inject constructor(private val venueDatabaseManager: V
      *
      * @param searchTerm is the search term that the user is searching for
      */
-    fun venueSearchTermUpdated(searchTerm: String) {
+    fun venueSearchTermUpdated(searchTerm: String, mapsApiKey: String, width: Int, height: Int) {
         disposables.clear()
         venueModifiedLiveData.value = null
 
@@ -57,6 +59,13 @@ class VenueListViewModel @Inject constructor(private val venueDatabaseManager: V
                                 latitude = venue.location.lat,
                                 longitude = venue.location.lng
                                 )
+
+                        displayVenue.googleMapsUrl = getGoogleMapsUrl( mapsApiKey, width,
+                                height, displayVenue )
+
+                        //Attempt to load the google map for the detail page here and cache it in the
+                        //Picasso image cache
+                        Picasso.get().load(displayVenue.googleMapsUrl).fetch()
 
                         category?.let {
                             displayVenue.categoryIconUrl = "${it.icon.prefix}$ICON_IMAGE_SIZE${it.icon.suffix}"
@@ -98,6 +107,49 @@ class VenueListViewModel @Inject constructor(private val venueDatabaseManager: V
                     venueModifiedLiveData.value = Pair(position, venue)
                     venueModifiedLiveData.value = null
                 }.subscribe())
+    }
+
+    /**
+     * This method will construct a Google Maps Static Map URL utilizing the venue from the live data
+     * object
+     *
+     * @param key is the key parameter we ae passing on to Google
+     * @param width is the width of the image we are requesting from Google
+     * @param height is the height of the image we are requesting from Google
+     */
+    fun getGoogleMapsUrl(key: String, width: Int, height: Int, venue: DisplayVenue) =
+                         Uri.Builder()
+                        .scheme(HTTPS_SCHEME)
+                        .authority(MAPS_BASE_URL)
+                        .path(MAPS_PATH)
+                        .appendQueryParameter(QUERY_PARAM_ZOOM, ZOOM)
+                        .appendQueryParameter(QUERY_PARAM_SCALE, SCALE)
+                        .appendQueryParameter(QUERY_PARAM_MARKERS, "$MARKER_COLOR|${venue.latitude},${venue.longitude}")
+                        .appendQueryParameter(QUERY_PARAM_MARKERS, "$MARKER_COLOR|$MARKER_LABEL$SEATTLE|$SEATTLE_LAT_LONG")
+                        .appendQueryParameter(QUERY_PARAM_SIZE, "${width}x${height}")
+                        .appendQueryParameter(QUERY_PARAM_KEY, key).build().toString()
+
+    /**
+     * The companion object will house string constants utilized by the VenueDetailViewModel class. These
+     * variables are utilized to build a Google Maps Static Maps URL.
+     */
+    companion object {
+        private const val HTTPS_SCHEME = "https"
+        private const val MAPS_BASE_URL = "maps.googleapis.com"
+        private const val MAPS_PATH = "maps/api/staticmap"
+
+        private const val QUERY_PARAM_ZOOM = "zoom"
+        private const val QUERY_PARAM_MARKERS = "markers"
+        private const val QUERY_PARAM_KEY = "key"
+        private const val QUERY_PARAM_SCALE = "scale"
+        private const val QUERY_PARAM_SIZE = "size"
+
+        private const val SCALE = "2"
+        private const val ZOOM = "15"
+        private const val MARKER_COLOR = "color:red"
+        private const val MARKER_LABEL = "label:"
+        private const val SEATTLE = "Seattle"
+        private const val SEATTLE_LAT_LONG = "47.60621,-122.33207"
     }
 
 }

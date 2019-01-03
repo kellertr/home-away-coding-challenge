@@ -31,6 +31,8 @@ class VenueListViewModelTest: BaseViewModelTest() {
 
     private val SEARCH_TERM = "search"
     private val VENUE_ID = "venueId"
+    private val LAT = 25.0
+    private val LONG = 50.0
 
     @Before
     override fun setup() {
@@ -52,7 +54,7 @@ class VenueListViewModelTest: BaseViewModelTest() {
         whenever( venueDBManager.favoriteVenues(any()) ).thenReturn( Observable.just( listOf(VENUE_ID) ) )
         whenever(fourSquareManager.getPlaces(SEARCH_TERM)).thenReturn(Single.just(buildVenueList()))
 
-        venueListViewModel.venueSearchTermUpdated(SEARCH_TERM)
+        venueListViewModel.venueSearchTermUpdated(SEARCH_TERM, "", 0, 0)
         advanceScheduler()
 
         val searchResults = venueListViewModel.getVenueListLiveData().value
@@ -110,6 +112,19 @@ class VenueListViewModelTest: BaseViewModelTest() {
         venueListViewModel.onCleared()
     }
 
+    @Test
+    fun googleMapsUrlTest() {
+        val key = "key"
+        val width = 100
+        val height = 200
+
+        val output = venueListViewModel.getGoogleMapsUrl(key, width, height, stubVenue())
+
+        Assert.assertEquals("Google Maps URL not equal", "https://maps.googleapis.com/maps/api/staticmap?" +
+                "zoom=15&scale=2&markers=color%3Ared%7C${LAT}%2C${LONG}&markers=color%3Ared%7Clabel%3ASeattle%7C47.60621%2C-122.33207&" +
+                "size=${width}x${height}&key=${key}", output)
+    }
+
     /**
      * This method will build a list of venues to be returned in the venue search call
      */
@@ -132,4 +147,6 @@ class VenueListViewModelTest: BaseViewModelTest() {
 
         return listOf( venue1, venue2 )
     }
+
+    private fun stubVenue() = DisplayVenue(latitude = LAT, longitude = LONG)
 }

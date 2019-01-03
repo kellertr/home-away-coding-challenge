@@ -39,6 +39,9 @@ dependencies {
   implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: rxjavaVersion
   implementation group: 'io.reactivex.rxjava2', name: 'rxandroid', version: rxAndroidVersion
 
+  //Utilized to prefetch google maps images
+  implementation group: 'com.squareup.picasso', name: 'picasso', version: picassoVersion
+
   api group: 'com.google.dagger', name: 'dagger', version: daggerVersion
   kapt group: 'com.google.dagger', name: 'dagger-compiler', version: daggerVersion
 

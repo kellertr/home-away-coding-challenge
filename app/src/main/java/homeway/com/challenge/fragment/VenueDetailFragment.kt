@@ -74,9 +74,7 @@ class VenueDetailFragment : Fragment() {
             val displayMetrics = DisplayMetrics()
             it.windowManager.defaultDisplay.getMetrics(displayMetrics)
 
-            Picasso.get().load(venueDetailViewModel.getGoogleMapsUrl( it.getString(R.string.maps_api_key),
-                    displayMetrics.widthPixels,
-                    it.resources.getDimensionPixelSize(R.dimen.collapsing_toolbar_height))).into(mapsView)
+            Picasso.get().load( venueDetailViewModel.venueLiveData.value?.googleMapsUrl ).into(mapsView)
 
             //Enable the collapsing toolbar layout and alter the functionality from a regular toolbar
             it.findViewById<CollapsingToolbarLayout>(R.id.collapsingToolbar).apply {

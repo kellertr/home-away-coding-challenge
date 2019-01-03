@@ -44,21 +44,6 @@ class VenueDetailViewModelTest : BaseViewModelTest() {
     }
 
     @Test
-    fun googleMapsUrlTest() {
-        viewModel.venueLiveData.value = stubVenue()
-
-        val key = "key"
-        val width = 100
-        val height = 200
-
-        val output = viewModel.getGoogleMapsUrl(key, width, height)
-
-        assertEquals( "Google Maps URL not equal", "https://maps.googleapis.com/maps/api/staticmap?" +
-                "zoom=15&scale=2&markers=color%3Ared%7C${LAT}%2C${LONG}&markers=color%3Ared%7Clabel%3ASeattle%7C47.60621%2C-122.33207&" +
-                "size=${width}x${height}&key=${key}", output )
-    }
-
-    @Test
     fun getVenueDetailsTest() {
         viewModel.venueLiveData.value = stubVenue()
 
@@ -73,6 +58,6 @@ class VenueDetailViewModelTest : BaseViewModelTest() {
 
     }
 
-    private fun stubVenue() = DisplayVenue(latitude = LAT, longitude = LONG, id = "ID")
+    private fun stubVenue() = DisplayVenue(latitude = LAT, longitude = LONG, id = ID)
 
 }
