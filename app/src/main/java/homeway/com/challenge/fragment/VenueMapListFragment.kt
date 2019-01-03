@@ -66,7 +66,7 @@ class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissab
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        mMap?.setMinZoomPreference(10f)
+        mMap?.setMaxZoomPreference(MAX_ZOOM)
 
         if (sharedVenueViewModel != null) {
             displayVenueMarkers()
@@ -119,6 +119,7 @@ class VenueMapListFragment : SupportMapFragment(), OnMapReadyCallback, Dismissab
     companion object {
 
         private const val ANIMATION_SETTINGS_TAG = "ANIMATION_SETTINGS"
+        private const val MAX_ZOOM = 10f
 
         /**
          * Create a new instance of the VenueMapListFragment

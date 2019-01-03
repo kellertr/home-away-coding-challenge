@@ -59,24 +59,29 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
 
         fab.setOnClickListener {
 
-            val fabSettings = RevealAnimationSetting(
-                    (it.x + it.width / 2).toInt(),
-                    (it.y + it.height / 2).toInt(),
-                    containerView.width,
-                    containerView.height)
-
-            val venueMapFragment = VenueMapListFragment.newInstance(fabSettings)
-
             if( venueSearch.hasFocus() ){
                 hideKeyboard(venueSearch)
 
                 Handler().postDelayed( {
-                    FragmentRunner.activateNewFragment( activity, venueMapFragment )
-                }, 200)
+                    navigateToVenueMapFragment()
+                }, KEYBOARD_DISMISS_DELAY)
             } else {
-                FragmentRunner.activateNewFragment( activity, venueMapFragment )
+                navigateToVenueMapFragment()
             }
         }
+    }
+
+    private fun navigateToVenueMapFragment(){
+        val fabSettings = RevealAnimationSetting(
+                (fab.x + fab.width / 2).toInt(),
+                (fab.y + fab.height / 2).toInt(),
+                containerView.width,
+                containerView.height)
+
+        val venueMapFragment = VenueMapListFragment.newInstance(fabSettings)
+
+        FragmentRunner.activateNewFragment( activity, venueMapFragment )
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -163,6 +168,9 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
     }
 
     companion object {
+
+        private const val KEYBOARD_DISMISS_DELAY: Long = 200
+
         fun newInstance() : VenueSearchFragment = VenueSearchFragment()
     }
 }

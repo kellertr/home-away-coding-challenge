@@ -14,7 +14,12 @@ class RevealAnimationSetting(val centerX: Int,
                              val width: Int,
                              val height: Int): Parcelable {
 
+    /**
+     * Calculate the radius of the given view
+     *
+     * @return the radius of a given view from the width and height parameters
+     */
     fun calculateRadius(): Float {
-        return (centerX * centerX + centerY * centerY).toFloat()
+        return Math.sqrt((width * width + height * height).toDouble()).toFloat()
     }
 }

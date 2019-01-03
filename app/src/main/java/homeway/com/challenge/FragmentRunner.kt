@@ -2,6 +2,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import homeway.com.challenge.R
 
+/**
+ * This class will be responsible for simple fragment interactions within the application
+ */
 object FragmentRunner{
 
     /**

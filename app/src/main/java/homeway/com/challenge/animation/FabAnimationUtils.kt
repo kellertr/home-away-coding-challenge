@@ -22,18 +22,21 @@ object FabAnimationUtils {
      * @param revealSettings are the view settings we are using to animate
      */
     fun registerCircularRevealAnimation(view: View, revealSettings: RevealAnimationSetting) {
+        val startColor = view.resources.getColor(R.color.colorPrimary)
+        val endColor = view.resources.getColor(R.color.white)
+
         view.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
             override fun onLayoutChange(v: View, left: Int, top: Int, right: Int, bottom: Int, oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
                 v.removeOnLayoutChangeListener(this)
-                val duration = v.resources.getInteger(android.R.integer.config_mediumAnimTime)
+                val duration = v.resources.getInteger(android.R.integer.config_mediumAnimTime).toLong()
 
                 val anim = ViewAnimationUtils.createCircularReveal(v, revealSettings.centerX,
-                        revealSettings.centerY, 0f, revealSettings.calculateRadius()).setDuration(duration.toLong())
+                        revealSettings.centerY, 0f, revealSettings.calculateRadius()).setDuration(duration)
 
                 anim.interpolator = FastOutSlowInInterpolator()
                 anim.start()
-                startColorAnimation(view, v.resources.getColor(R.color.colorPrimary),
-                        v.resources.getColor(R.color.white), duration)
+                startColorAnimation(view, startColor,
+                        endColor, duration)
             }
         })
     }
@@ -61,7 +64,7 @@ object FabAnimationUtils {
         } )
 
         anim.start()
-        startColorAnimation(view, view.resources.getColor(R.color.white), view.resources.getColor(R.color.colorPrimary), duration.toInt())
+        startColorAnimation(view, view.resources.getColor(R.color.white), view.resources.getColor(R.color.colorPrimary), duration)
     }
 
     /**
@@ -72,12 +75,12 @@ object FabAnimationUtils {
      * @param endColor is the desired end color of the animation
      * @param duration is the time it will take to complete this animation
      */
-    private fun startColorAnimation(view: View, startColor: Int, endColor: Int, duration: Int) {
+    private fun startColorAnimation(view: View, startColor: Int, endColor: Int, duration: Long) {
         val anim = ValueAnimator()
         anim.setIntValues(startColor, endColor)
         anim.setEvaluator(ArgbEvaluator())
         anim.addUpdateListener { valueAnimator -> view.setBackgroundColor(valueAnimator.animatedValue as Int) }
-        anim.duration = duration.toLong()
+        anim.duration = duration
         anim.start()
     }
 }
