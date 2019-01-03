@@ -1,6 +1,7 @@
 # HomeAway Coding Challenge
 
-An application integrating with FourSquareAPI to allow users to view custom maps
+An application integrating with FourSquareAPI to allow users to search for venues, see the list of venues on a map and
+view venue details for a given venue.
 
 ## Application Architecture
 
@@ -33,7 +34,6 @@ the FourSquare service here as well as make sure our integration stays consisten
 
 #### Testing Dependency from Other Classes
 
-
 The Network layer also provides a custom implementation of the FourSquareAPI that will be pointed to "localhost://8080". This will be utilized
 by our Espresso testing suite that I will go into further detail on when talking through the app layer. There is an additional create() method
 on the FourSquareAPI that allows us to create the Four Square API with a custom URL. To ensure that dagger creates a graph that contains the
@@ -43,5 +43,17 @@ FourSquareAPI pointed to local host, an implementing component must include the 
 ### ViewModel
 
 ### Database
+
+The database layer will contain all interactions with the database that is built for persisting favorited venue's across sessions. I chose to utilize
+Room for interfacing with local databases. The VenueDao class is the main interface utilized when interacting with Room. This class is utilized to build
+our VenueDatabase that will only be a list of Venue Ids. It will handle inserting, removing and querying the database. Similar to the network layer, there
+is a class, VenueDatabaseManager, that will handle any additional business logic needed between the database layer and the implementing layer. The database
+layer also requires injection and includes a DatabaseModule that will provide the VenueDatabaseManager and the VenueDao.
+
+#### Database Testing
+
+The Database layer is tested with VenueDatabaseManagerTest and VenueDatabaseTest. The VenueDatabaseTest will test the VenueDao implementation utilizing the
+Room testing library so we can execute Database queries on the main thread. It will execute remove, insert and query and then validate the contents of the
+database after testing these actions. In the VenueDatabaseManagerTest, we will mock the VenueDao object and stub responses from the DAO.
 
 ### App

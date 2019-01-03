@@ -2,6 +2,7 @@ package homeway.com.database
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.nhaarman.mockitokotlin2.*
+import io.reactivex.Observable
 import io.reactivex.Single
 import org.junit.Assert
 import org.junit.Before
@@ -32,7 +33,7 @@ class VenueDatabaseManagerTest {
 
     @Test
     fun testVenueFavoritesList() {
-        whenever(venueDao.favoriteVenues(any())).thenReturn( Single.just(listOf(
+        whenever(venueDao.favoriteVenues(any())).thenReturn( Observable.just(listOf(
                 VenueEntry("1"),
                 VenueEntry("2"),
                 VenueEntry("3"),
