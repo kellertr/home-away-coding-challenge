@@ -90,3 +90,45 @@ Room testing library so we can execute Database queries on the main thread. It w
 database after testing these actions. In the VenueDatabaseManagerTest, we will mock the VenueDao object and stub responses from the DAO.
 
 ### App
+
+The App layer contains all application components that will be displayed to the user. The app layer has a simple VenueActivity which serves
+as the lone activity for the application. The VenueActivity contains the shared view model and shares it to all three fragments. We utilize
+DaggerAndroid to handle injection of all activities and fragments and build our Dagger graph using the Application Component which we inject
+in the CodingApplication class. There is a package, homeaway.com.challenge.animation, which handles a custom animation of the floating
+action button exploding into a new view and collapsing into a previous view. The app also includes to kotlin-android-extensions in the Parcelize
+annotation and dynamic view binding. The parcelize annotation essentially implements the Parcelable interface for you while dynamic view binding
+will automatically bind views by id and layout file. I utilized both to cut down on the number of lines of code I had to write.
+
+#### VenueSearchFragment
+
+The Venue Search fragment is a simple search fragment that will allow the user to perform a typeahead search on a searchview that will display
+search results in a RecyclerView to the user. If there is more than one result returned, the user sees a FloatingActionButton that upon tapping
+will show all of the Venue's in the Recycler View on a Google Map. On this screen, a user also has the ability to mark a venue as a favorite
+venue that will persist across launches of the application.
+
+#### VenueDetailFragment
+
+The Venue Detail Fragment is a fragment that contains a CollapsingToolbar that contains an ImageView that will display a (hopefully cached) Google
+Maps static image. The content on the rest of the page contains a link that will drive the user to the venue's webpage externally using an explicit
+intent and will also show if the current venue is a favorite venue.
+
+#### VenueMapListFragment
+
+The VenueMapsListFragment shows a list of venues from the shared view model on a Google Map. Each marker on the map will show an InfoWindow when
+tapped that will have the Venue Name in the window. Upon tapping an info window, a user will be navigated to the VenueDetailFragment. We pass
+FAB view parameters through the bundle when instantiating this fragment so that we can collapse this fragment back into the fab on the search page.
+
+#### EspressoTesting
+
+There is a small Espresso testing suite for VenueSearch and VenueDetail. This suite will be built pointing to the mock variant of the application.
+The reason we do this is so wec an include the correct module when providing the FourSqaureAPI mock implementation. The MockWebServer utilizes
+a Dispatcher, MockDispatcher, to handle mapping HTTP Requests to mocked responses. Using a mockwebserver takes network availability,
+inconsistency, and altered data out of the question. It greatly speeds up our Espresso tests as well as response times are almost instantaneous.
+
+## Building the Application
+
+### Debug/Release versions of the .apk
+
+### UnitTesting
+
+### Espresso
