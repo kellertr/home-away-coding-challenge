@@ -1,6 +1,6 @@
 package homeway.com.viewmodel
 
-import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import homeway.com.network.FourSquareManager
 import homeway.com.viewmodel.model.DisplayVenue
@@ -13,6 +13,7 @@ import javax.inject.Inject
  * Detail Screen
  */
 class VenueDetailViewModel @Inject constructor(val fourSquareManager: FourSquareManager): BaseViewModel(){
+    private val TAG = VenueListViewModel::class.java.simpleName
 
     val venueLiveData: MutableLiveData<DisplayVenue> = MutableLiveData()
 
@@ -42,7 +43,7 @@ class VenueDetailViewModel @Inject constructor(val fourSquareManager: FourSquare
                 }.subscribe({
                     venueLiveData.value = it
                 }, {
-                    //TODO error handling
+                    Log.v(TAG, "Handled error from venue details lookup")
                 })
 
         disposables.add(disposable)

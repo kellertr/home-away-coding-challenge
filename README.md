@@ -42,6 +42,39 @@ FourSquareAPI pointed to local host, an implementing component must include the 
 
 ### ViewModel
 
+The ViewModel layer will contain all business logic needed to display view components in the application. We will utilize LiveData from Google's architecture
+components library to notify views of updated components from any asynchronous actions, whether it be a network call or a database action. Each ViewModel will
+extend the BaseViewModel. The BaseViewModel will manage disposable subscriptions to prevent memory leaks. In the ViewModel layer, we also map a Venue into a
+DisplayVenue so that we only share elements needed by the UI and don't have to add any addtional business logic to our Fragment/Activity classes. The
+View Model layer also provides a module to be included into the base Dagger component. We bind all View Models using a custom key, @ViewModelKey so that we
+can utilize the map created by Dagger to inject the ViewModelFactory.
+
+#### VenueDetailViewModel
+
+The VenueDetailViewModel will contain any interaction needed to support the VenueDetail Screen. This View Model will be interact with the FourSquareAPI
+when loading venue details. Upon loading VenueDetails, it will update the live data object containing a venue with a new venue that has a Venue's URL
+
+#### VenueListViewModel
+
+The VenueListViewModel will handle loading a list of venues from a given search term, updating whether or not an item is favorited in the VenueDatabase
+and building a GoogleMapsUrl for a given venue. Upon successfully receiving a list of venues from the FourSquareApi, we will query the venue database to
+see if any of the venues provided from four square have been previously favorited by the user. Upon receiving this list, we will merge the results and
+create a list of DisplayVenues that will be used to populate a list of venues sent to the app layer. Upon successfully merging the results of our database
+query and foursquare api lookup, we synchronously load a corresponding GoogleMaps static image to cache that will be displayed on the VenueDetails page.
+When a user taps on the favorite icon, we call the venue database and either insert or remove the item into the VenueDatabase depending on whether or not
+the venue was previously favorited.
+
+#### VenueSharedViewModel
+
+This ViewModel will be utilized to share values between fragments; it is intended to be used at the activity level.
+
+#### ViewModel Testing
+
+The VenueDetail and VenueList ViewModels have corresponding unit tests that test the loading a Venue List, loading a given venue's details and building the
+Static Maps Image. Each test will extend a Base Test so we can override RXSchedulers to use a custom TestScheduler to ensure Actions from RX are scheduled
+appropriately. When testing the view models, we mock the database and foursquareapi implementations and return built responses so we are only testing the
+viewmodel components in these tests.
+
 ### Database
 
 The database layer will contain all interactions with the database that is built for persisting favorited venue's across sessions. I chose to utilize
