@@ -5,6 +5,10 @@ import android.util.Log
 import android.view.View
 import androidx.test.espresso.IdlingResource
 
+/**
+ * The ViewIdlingResource class will be utilized in our Espresso tests to wait for a view that matches
+ * a given id to be displayed on the screen
+ */
 class ViewIdlingResource(val currentActivity: Activity, private val viewResourceId: Int) : IdlingResource {
     private var idleNow: Boolean = false
     private var resourceCallback: IdlingResource.ResourceCallback? = null

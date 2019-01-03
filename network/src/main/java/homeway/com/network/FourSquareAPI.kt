@@ -66,12 +66,18 @@ interface FourSquareAPI {
         /**
          * Create an instance of the FourSquareAPI utilizing RX and Gson.
          *
-         * @return a new instance of the retrofit API
+         * @return a new instance of the FourSquare API
          */
         fun create(): FourSquareAPI {
             return create(BASE_URL)
         }
 
+        /**
+         * Create an instance of the FourSquareAPI utilizing RX and Gson.
+         *
+         * @param baseUrl is the baseURL for the FourSquareAPI
+         * @return a new instance of the FourSqaure API
+         */
         fun create( baseUrl: String ): FourSquareAPI{
 
             //Trust all certificates, typically we would only want a limited subset of certificates

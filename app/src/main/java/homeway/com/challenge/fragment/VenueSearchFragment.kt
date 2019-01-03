@@ -15,7 +15,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.squareup.picasso.Picasso
 import homeway.com.challenge.R
 import homeway.com.challenge.animation.RevealAnimationSetting
 import homeway.com.challenge.view.VenueAdapter
@@ -27,7 +26,9 @@ import kotlinx.android.synthetic.main.venue_search_fragment.*
 import javax.inject.Inject
 
 /**
- * A placeholder fragment containing a simple view.
+ * The VenueSearchFragment is the main fragment of the application. From this page, a user can search
+ * for venues, save a venue as a favorite, and navigate to either the venue detail page or venue maps
+ * page.
  */
 class VenueSearchFragment : Fragment(), VenueRowInterface {
     val TAG = VenueSearchFragment::class.java.simpleName
@@ -64,6 +65,9 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
             if( venueSearch.hasFocus() ){
                 hideKeyboard(venueSearch)
 
+                //Post this action delayed so we give time for the keyboard to hide before animating
+                //If we animate before, we do not have a good idea of where the keyboard is on the
+                //screen
                 Handler().postDelayed( {
                     navigateToVenueMapFragment()
                 }, KEYBOARD_DISMISS_DELAY)
@@ -103,6 +107,9 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
         venueListViewModel.getVenueModifiedLiveData().observe(viewLifecycleOwner, updateVenueFavorited)
     }
 
+    /**
+     * The updateVenueList observer is listening for LiveData changes from the venueListViewModel
+     */
     private val updateVenueList = Observer<List<DisplayVenue>> { venues ->
         Log.v(TAG, "Venues received")
         venueListAdapter.data = venues.toMutableList()
@@ -124,6 +131,11 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
         super.onResume()
 
         activity?.let { fragmentActivity ->
+
+            //We gather information about display metrics of the screen, the static maps height, and
+            //google api key so we can attempt to cache the Google Maps static image before a user
+            //goes to the Venue Detail screen. By doing this, the customer is much more likely to see
+            //an image in the Toolbar on the VenueDetail screen as soon as they launch the page
             val displayMetrics = DisplayMetrics()
             fragmentActivity.windowManager.defaultDisplay.getMetrics(displayMetrics)
 
@@ -174,10 +186,22 @@ class VenueSearchFragment : Fragment(), VenueRowInterface {
         }
     }
 
+    /**
+     * Implemented as part of the VenueRowInterface, this is triggered when a view is favorited
+     *
+     * @param displayVenue is the venue that we pass to the view model to update whether or not it is
+     *                     favorited
+     * @param position is the position of the item that clicked
+     */
     override fun venueFavoriteAdjusted(displayVenue: DisplayVenue, position: Int) {
         venueListViewModel.venueFavorited(displayVenue, position)
     }
 
+    /**
+     * This method was implemented as part of the VenueRowInterface, this is triggered on a VenueRowTap
+     *
+     * @param displayVenue is the venue that was engaged with that we will show the user details for
+     */
     override fun onRowClicked(displayVenue: DisplayVenue) {
 
         hideKeyboard(venueSearch)
